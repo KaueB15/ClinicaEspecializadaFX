@@ -1,0 +1,29 @@
+.btn-entrar {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.btn-entrar:hover {
+    -fx-background-color: #0e4b88;
+    -fx-text-fill: white;
+}
+
+.btn-cadastro {
+    -fx-background-color: #4fd906;
+    -fx-text-fill: white;
+}
+
+.btn-cadastro:hover {
+    -fx-background-color: #2f8804;
+    -fx-text-fill: white;
+}
+
+.btn-voltar {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.btn-voltar:hover {
+    -fx-background-color: #0e4b88;
+    -fx-text-fill: white;
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.CadastroController">
+   <children>
+      <ImageView fitHeight="325.0" fitWidth="162.0" layoutX="21.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/cadastro_paciente.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="325.0" fitWidth="162.0" layoutX="213.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/cadastro_medico.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="406.0" layoutX="388.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="212.0" />
+      <ImageView fitHeight="60.0" fitWidth="173.0" layoutX="408.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo_menor.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="405.0" layoutY="264.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="173.0" styleClass="btn-voltar" stylesheets="@styles.css" text="Voltar &lt;--">
+         <font>
+            <Font name="Leelawadee UI Bold" size="24.0" />
+         </font>
+      </Button>
+      <Rectangle fx:id="pacienteButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="406.0" layoutY="-1.0" stroke="#4a9bdd" strokeType="INSIDE" width="197.0" />
+      <Rectangle fx:id="medicoButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="406.0" layoutX="197.0" layoutY="-1.0" stroke="#4a9bdd" strokeType="INSIDE" width="191.0" />
+   </children>
+</AnchorPane>
