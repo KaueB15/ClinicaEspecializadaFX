@@ -1,5 +1,6 @@
 package br.edu.fescfafic.clicinaespecializadafx.main;
 
+import br.edu.fescfafic.clicinaespecializadafx.dao.SendSMSDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
