@@ -7,7 +7,7 @@ module br.edu.fescfafic.clicinaespecializadafx {
 
 
     opens br.edu.fescfafic.clicinaespecializadafx to javafx.fxml;
-    exports br.edu.fescfafic.clicinaespecializadafx;
+    exports br.edu.fescfafic.clicinaespecializadafx.main to javafx.graphics;
     exports br.edu.fescfafic.clicinaespecializadafx.view;
     opens br.edu.fescfafic.clicinaespecializadafx.view to javafx.fxml;
 }

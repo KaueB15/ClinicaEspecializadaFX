@@ -1,4 +1,4 @@
-package br.edu.fescfafic.clicinaespecializadafx;
+package br.edu.fescfafic.clicinaespecializadafx.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -33,7 +33,7 @@ public class HelloController {
     }
     @FXML
     protected void onCadastroButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cadastro.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/cadastro.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
         Scene cadastroScene = new Scene(cadastroRoot);
 
