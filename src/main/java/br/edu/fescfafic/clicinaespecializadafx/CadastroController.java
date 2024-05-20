@@ -42,8 +42,14 @@ public class CadastroController {
     }
 
     @FXML
-    protected void onVoltarButtonClick(ActionEvent event) {
-        // Lógica para lidar com o clique no voltar
-        System.out.println("Botão do Voltar clicado!");
+    protected void onVoltarButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+        Parent loginRoot = fxmlLoader.load();
+        Scene loginScene = new Scene(loginRoot);
+
+        Stage stage = (Stage) pacienteButton.getScene().getWindow();
+        stage.setScene(loginScene);
+        stage.setTitle("Clinica Especializada");
+        stage.show();
     }
 }
