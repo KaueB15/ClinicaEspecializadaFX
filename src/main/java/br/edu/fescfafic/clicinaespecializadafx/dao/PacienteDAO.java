@@ -1,7 +1,11 @@
 package br.edu.fescfafic.clicinaespecializadafx.dao;
 
+import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import br.edu.fescfafic.clicinaespecializadafx.persistence.EntityManagerConnection;
+import jakarta.persistence.EntityManager;
+
+import java.util.List;
 
 public class PacienteDAO {
     private EntityManagerConnection emc = new EntityManagerConnection();
@@ -10,7 +14,7 @@ public class PacienteDAO {
         return emc;
     }
 
-    public void cadastrarPaciente(Paciente paciente){
+    public void cadastrarPaciente(Paciente paciente) {
         // Inicia a transação com o BD
         getEmc().getEntityManager().getTransaction().begin();
         // Realiza a percistencia na tabela
@@ -18,4 +22,36 @@ public class PacienteDAO {
         // Confirmação da transação
         getEmc().getEntityManager().getTransaction().commit();
     }
+
+    public List<Paciente> listarPacientes() {
+        getEmc().getEntityManager().getTransaction().begin();
+        var query = getEmc().getEntityManager().createNamedQuery("pacientes.getAll");
+        return query.getResultList();
+    }
+
+    public Paciente buscarPorCpf(String cpf) {
+        getEmc().getEntityManager().getTransaction().begin();
+        var query = getEmc().getEntityManager().createNamedQuery("pacientes.getByCpf");
+        query.setParameter("cpf", cpf);
+        return (Paciente) query.getSingleResult();
+    }
+
+    public Paciente findById(int id) {
+        getEmc().getEntityManager().getTransaction().begin();
+        return getEmc().getEntityManager().find(Paciente.class, id);
+    }
+
+    public void deletarPorCpf(String cpf) {
+        var paciente = buscarPorCpf(cpf);
+        getEmc().getEntityManager().remove(paciente);
+        getEmc().getEntityManager().getTransaction().commit();
+    }
+
+    public void deletarPorId(int id) {
+        var paciente = findById(id);
+        getEmc().getEntityManager().remove(paciente);
+        getEmc().getEntityManager().getTransaction().commit();
+    }
+    //TODO:Ainda falta definir o metodo de atualizar, pois pretendo disponibilizar atualização de dados individuais
+
 }
