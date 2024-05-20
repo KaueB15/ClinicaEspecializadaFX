@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.CadastroPacienteController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="91.0" layoutX="20.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="565.0" />
+      <Label layoutX="46.0" layoutY="78.0" text="é rápido e fácil." textFill="WHITE">
+         <font>
+            <Font name="Leelawadee UI" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="45.0" prefWidth="173.0" text="Cadastre-se" textFill="WHITE">
+         <font>
+            <Font name="Leelawadee UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <Line endX="435.0" layoutX="146.0" layoutY="113.0" startX="-124.0" strokeWidth="0.4" />
+      <ImageView fitHeight="56.0" fitWidth="192.0" layoutX="374.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo_menor.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome Completo">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="335.0" layoutY="169.0" prefHeight="25.0" prefWidth="249.0" promptText="CPF">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="21.0" layoutY="221.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome de Usuário">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="333.0" layoutY="221.0" prefHeight="25.0" prefWidth="249.0" promptText="Senha">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="20.0" layoutY="272.0" prefHeight="25.0" prefWidth="295.0" promptText="Telefone">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <DatePicker layoutX="335.0" layoutY="272.0" prefHeight="25.0" prefWidth="249.0" promptText="Data de Nascimento" />
+      <RadioButton layoutX="22.0" layoutY="339.0" mnemonicParsing="false" text="Masculino">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="Sexo" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="133.0" layoutY="339.0" mnemonicParsing="false" prefWidth="114.0" text="Feminino" toggleGroup="$Sexo">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="22.0" layoutY="316.0" text="Sexo" textFill="#0000008b">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </Label>
+      <Button id="btn-finalizar-cadastro" layoutX="333.0" layoutY="320.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="249.0" styleClass="btn-finalizar-cadastro" text="Cadastre-se">
+         <font>
+            <Font name="Leelawadee UI Bold" size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="22.0" layoutY="122.0" text="Cadastro de Paciente">
+         <font>
+            <Font name="Leelawadee UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="237.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="78.0" styleClass="btn-voltar-paciente" stylesheets="@styles.css" text="Voltar" textFill="WHITE">
+         <font>
+            <Font name="Leelawadee UI Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

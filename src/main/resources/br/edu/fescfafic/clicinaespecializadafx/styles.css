@@ -27,3 +27,32 @@
     -fx-background-color: #0e4b88;
     -fx-text-fill: white;
 }
+
+.btn-retangle{
+    -fx-fill: rgba(0, 0, 0, 0); /* Transparente */
+    -fx-transition: fill 0.3s ease;
+}
+
+.btn-retangle:hover{
+    -fx-fill: rgba(51, 192, 246, 0.4);
+}
+
+.btn-finalizar-cadastro {
+    -fx-background-color: #4fd906;
+    -fx-text-fill: white;
+}
+
+.btn-finalizar-cadastro:hover {
+    -fx-background-color: #2f8804;
+    -fx-text-fill: white;
+}
+
+.btn-voltar-paciente{
+    -fx-background-color: #0e4b88;
+    -fx-text-fill: white;
+}
+
+.btn-voltar-paciente:hover{
+    -fx-background-color: #0e4b88;
+    -fx-text-fill: white;
+}

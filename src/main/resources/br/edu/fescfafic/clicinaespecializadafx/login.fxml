@@ -40,7 +40,7 @@
          </font>
       </Button>
       <PasswordField id="passwordField" fx:id="passwordField" layoutX="382.0" layoutY="222.0" prefHeight="25.0" prefWidth="179.0" styleClass="style-passwordfield" stylesheets="@styles.css" />
-      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="401.0" layoutY="321.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE" onAction="#onCadastroButtonClick">
+      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="401.0" layoutY="321.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE">
 
       <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
