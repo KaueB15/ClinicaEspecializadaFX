@@ -1,4 +1,4 @@
-package interfaces;
+package br.edu.fescfafic.clicinaespecializadafx.interfaces;
 
 public interface ILogin {
     String getLogin();

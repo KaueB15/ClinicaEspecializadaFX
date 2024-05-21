@@ -1,4 +1,4 @@
-package interfaces;
+package br.edu.fescfafic.clicinaespecializadafx.interfaces;
 
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 
