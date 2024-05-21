@@ -1,5 +1,6 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
 
+import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,4 +53,5 @@ public class CadastroController {
         stage.setTitle("Clinica Especializada");
         stage.show();
     }
+
 }

@@ -1,5 +1,6 @@
 package br.edu.fescfafic.clicinaespecializadafx.domain;
 
+import br.edu.fescfafic.clicinaespecializadafx.interfaces.IPaciente;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,7 +12,7 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nome;
+    private String nome, sexo;
     private LocalDate dataNascimento;
     @OneToOne
     private Login login;

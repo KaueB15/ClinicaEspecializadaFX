@@ -32,32 +32,32 @@
             <Image url="@images/logo_menor.png" />
          </image>
       </ImageView>
-      <TextField layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome Completo">
+      <TextField fx:id="fieldName" layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome Completo">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="335.0" layoutY="169.0" prefHeight="25.0" prefWidth="249.0" promptText="CPF">
+      <TextField fx:id="fieldCPF" layoutX="335.0" layoutY="169.0" prefHeight="25.0" prefWidth="249.0" promptText="CPF">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="21.0" layoutY="221.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome de Usuário">
+      <TextField fx:id="fieldLogin" layoutX="21.0" layoutY="221.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome de Usuário">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="333.0" layoutY="221.0" prefHeight="25.0" prefWidth="249.0" promptText="Senha">
+      <TextField fx:id="fieldPassword" layoutX="333.0" layoutY="221.0" prefHeight="25.0" prefWidth="249.0" promptText="Senha">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="20.0" layoutY="272.0" prefHeight="25.0" prefWidth="295.0" promptText="Telefone">
+      <TextField fx:id="fieldPhone" layoutX="20.0" layoutY="272.0" prefHeight="25.0" prefWidth="295.0" promptText="Telefone">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </TextField>
-      <DatePicker layoutX="335.0" layoutY="272.0" prefHeight="25.0" prefWidth="249.0" promptText="Data de Nascimento" />
+      <DatePicker fx:id="fieldDate" layoutX="335.0" layoutY="272.0" prefHeight="25.0" prefWidth="249.0" promptText="Data de Nascimento" />
       <RadioButton layoutX="22.0" layoutY="339.0" mnemonicParsing="false" text="Masculino">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
@@ -76,7 +76,7 @@
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="btnFinalizarCadastro" layoutX="333.0" layoutY="320.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="249.0" styleClass="btn-finalizar-cadastro" text="Cadastre-se">
+      <Button fx:id="btnFinalizarCadastro" layoutX="333.0" layoutY="320.0" mnemonicParsing="false" onAction="#onCasdastrarPaciente" prefHeight="56.0" prefWidth="249.0" styleClass="btn-finalizar-cadastro" text="Cadastre-se">
          <font>
             <Font name="Leelawadee UI Bold" size="20.0" />
          </font>
