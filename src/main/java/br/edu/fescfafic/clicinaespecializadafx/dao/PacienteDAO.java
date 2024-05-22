@@ -1,14 +1,15 @@
 package br.edu.fescfafic.clicinaespecializadafx.dao;
 
-import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
+
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import br.edu.fescfafic.clicinaespecializadafx.persistence.EntityManagerConnection;
-import jakarta.persistence.EntityManager;
+
 
 import java.util.List;
 
 public class PacienteDAO {
-    private EntityManagerConnection emc = new EntityManagerConnection();
+    private EntityManagerConnection emc=new EntityManagerConnection();
+
 
     public EntityManagerConnection getEmc() {
         return emc;
@@ -52,6 +53,13 @@ public class PacienteDAO {
         getEmc().getEntityManager().remove(paciente);
         getEmc().getEntityManager().getTransaction().commit();
     }
-    //TODO:Ainda falta definir o metodo de atualizar, pois pretendo disponibilizar atualização de dados individuais
+    public void atualizarPaciente(Paciente paciente) {
+        // Inicia a transação com o BD
+        getEmc().getEntityManager().getTransaction().begin();
+        // Realiza a percistencia na tabela
+        getEmc().getEntityManager().merge(paciente);
+        // Confirmação da transação
+        getEmc().getEntityManager().getTransaction().commit();
+    }
 
 }

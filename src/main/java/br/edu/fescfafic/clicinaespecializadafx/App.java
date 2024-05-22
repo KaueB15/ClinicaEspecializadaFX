@@ -1,0 +1,64 @@
+package br.edu.fescfafic.clicinaespecializadafx;
+
+import br.edu.fescfafic.clicinaespecializadafx.dao.AgendamentoDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Agendamento;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
+
+import java.time.LocalDateTime;
+
+public class App {
+    public static void main(String[] args) {
+        var pacienteDao = new PacienteDAO();
+        var medicoDao = new MedicoDAO();
+        var agendamentoDao = new AgendamentoDAO();
+
+        System.out.println("Criando Tabelas...");
+
+        // Login de paciente
+        Login loginVictor = new Login();
+        loginVictor.setLogin("Victor");
+        loginVictor.setSenha("123");
+
+
+        //Cadastro Paciente
+        var pacienteVictor = new Paciente();
+        pacienteVictor.setNome("Victor");
+        pacienteVictor.setCpf("222222222");
+        pacienteVictor.setTelefonePaciente("(83) 9 8156-9632");
+        pacienteVictor.setLogin(loginVictor);
+
+        pacienteDao.cadastrarPaciente(pacienteVictor);
+
+        // Cadastro de médico
+        var medZack = new Medico();
+        medZack.setCrm(123456);
+        medZack.setNome("Zack");
+        medZack.setCpf("20052024");
+        medZack.setEspecialidade("Embriologista");
+
+
+
+        //Login Medico
+        Login loginZack = new Login();
+        loginZack.setLogin("Zack");
+        loginZack.setSenha("Zack22");
+
+        medZack.setLogin(loginZack);
+
+        medicoDao.cadastrarMedico(medZack);
+
+//        // Agendamento
+//        var agendamento = new Agendamento();
+//        agendamento.setDataHora(LocalDateTime.of(2024, 2, 25, 10, 30));
+//        agendamento.setIdMedico(medZack);
+//        agendamento.setIdPaciente(pacienteVictor);
+//
+//        agendamentoDao.agendarHorario(agendamento);
+
+        System.out.println("Tabelas Geradas com Sucesso!!!!!");
+    }
+}
