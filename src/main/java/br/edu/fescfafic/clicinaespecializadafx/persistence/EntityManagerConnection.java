@@ -7,7 +7,7 @@ import jakarta.persistence.Persistence;
 import java.util.Objects;
 
 public class EntityManagerConnection {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("clinicaespecializada");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("clinicaespecializadafx");
     private EntityManager entityManager;
 
     public EntityManager getEntityManager() {
