@@ -13,7 +13,11 @@ import java.time.LocalDateTime;
         @NamedQuery(name = "buscarPorMedico", query = "select m from Medico m"),
         @NamedQuery(name = "buscarPorPaciente", query = "select p from Paciente p"),
         @NamedQuery(name = "verificarDisponibilidade", query = "select hm from Agendamento hm where hm.dataHoraInicio=:dataHora"),
-        @NamedQuery(name="valida.agendamento",query="select a from Agendamento a where a.dataHoraInicio>= :dataHoraInicio and a.dataHoraFim<= :dataHoraFim and a.idMedico.id= :idMedico")
+
+        @NamedQuery(name = "valida.agendamento", query = "SELECT a FROM Agendamento a WHERE a.medico.id = :medico AND" +
+                " (:inicioAtendimento BETWEEN a.dataHoraInicio AND a.dataHoraFim) OR" +
+                " (:fimAtendimento BETWEEN a.dataHoraInicio AND a.dataHoraFim)"
+        )
 
 })
 public class Agendamento {

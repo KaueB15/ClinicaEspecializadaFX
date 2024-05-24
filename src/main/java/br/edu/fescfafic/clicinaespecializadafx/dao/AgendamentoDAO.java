@@ -49,16 +49,31 @@ public class AgendamentoDAO {
         }
         return 0;
     }
-    public Agendamento verificarDisponibilidadeMarcacao(LocalDateTime inicio, LocalDateTime fim, int idMedico) {
-        getEmc().getEntityManager().getTransaction().begin();
-        TypedQuery<Agendamento> query = getEmc().getEntityManager().createNamedQuery("valida.agendamento",Agendamento.class);
-        query.setParameter("dataHoraInicio", inicio);
-        query.setParameter("dataHoraFim", fim);
-        query.setParameter("idMedico", idMedico);
+    public Agendamento verificarDisponibilidadeMarcacao(LocalDateTime dataHoraDesejada, int idMedico) {
+        LocalDateTime inicioAtendimento = dataHoraDesejada;
+        LocalDateTime fimAtendimento = inicioAtendimento.plusMinutes(45);
 
+        try {
+            TypedQuery<Agendamento> query = getEmc().getEntityManager().createNamedQuery("valida.agendamento", Agendamento.class);
+            query.setParameter("inicioAtendimento", inicioAtendimento);
+            query.setParameter("fimAtendimento", fimAtendimento);
+            query.setParameter("medico", idMedico);
 
-        return query.getSingleResult();
+            Agendamento result = query.getSingleResult();
+            System.out.println("Horário já reservado para outro agendamento: " + result);
 
+            Agendamento novoAgendamento = new Agendamento();
+            novoAgendamento.setDataHoraInicio(inicioAtendimento);
+            novoAgendamento.setDataHoraFim(fimAtendimento);
+            getEmc().getEntityManager().persist(novoAgendamento);
+
+            getEmc().getEntityManager().getTransaction().commit();
+            System.out.println("Atendimento agendado para " + inicioAtendimento + " - " + fimAtendimento);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
     }
 
 
