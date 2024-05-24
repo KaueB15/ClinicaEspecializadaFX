@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
+@Data
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

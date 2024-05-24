@@ -1,33 +1,33 @@
 package br.edu.fescfafic.clicinaespecializadafx.main;
 
-import br.edu.fescfafic.clicinaespecializadafx.dao.AgendamentoDAO;
-import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
-import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
-import br.edu.fescfafic.clicinaespecializadafx.dao.SendSMSDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.*;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 
 public class App2 {
     public static void main(String[] args) {
-//        var pacienteDao = new PacienteDAO();
-//        var medicoDao = new MedicoDAO();
-//        var agendamentoDao = new AgendamentoDAO();
-//
+        var pacienteDao = new PacienteDAO();
+        var medicoDao = new MedicoDAO();
+        var agendamentoDao = new AgendamentoDAO();
+        var loginDao = new LoginDAO();
+
 //        System.out.println("Criando Tabelas...");
-//
-//        // Cadastro de paciente
-//        Login loginVictor = new Login();
-//        loginVictor.setLogin("Victor");
-//        loginVictor.setSenha("123");
-//
-//        var pacienteVictor = new Paciente();
-//        pacienteVictor.setNome("Victor");
-//        pacienteVictor.setCpf("222222222");
-//        pacienteVictor.setTelefonePaciente("(83) 9 8156-9632");
-//        pacienteVictor.setLogin(loginVictor);
-//
-//        pacienteDao.cadastrarPaciente(pacienteVictor);
+
+        // Cadastro de paciente
+        Login loginVictor = new Login();
+        loginVictor.setLogin("Victor");
+        loginVictor.setSenha("123");
+
+        loginDao.inserirLogin(loginVictor);
+
+        var pacienteVictor = new Paciente();
+        pacienteVictor.setNome("Victor");
+        pacienteVictor.setCpf("222222222");
+        pacienteVictor.setTelefonePaciente("(83) 9 8156-9632");
+        pacienteVictor.setLogin(loginVictor);
+
+        pacienteDao.cadastrarPaciente(pacienteVictor);
 //
 //        // Cadastro de médico
 //        var medZack = new Medico();
@@ -51,13 +51,14 @@ public class App2 {
 //        agendamento.setIdPaciente(pacienteVictor);
 //
 //        agendamentoDao.agendarHorario(agendamento);
+//
 //        var pacienteDAO = new PacienteDAO();
 //        pacienteDAO.getEmc().getEntityManager().clear();
 //
 //        System.out.println("Tabelas Geradas com Sucesso!!!!!");
 
-        SendSMSDAO sendSMSDAO = new SendSMSDAO();
-        sendSMSDAO.sendSMS("+5511987069733");
+//        SendSMSDAO sendSMSDAO = new SendSMSDAO();
+//        sendSMSDAO.sendSMS("+5511987069733");
     }
 }
 

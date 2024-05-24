@@ -63,10 +63,10 @@
             <Font name="Leelawadee UI" size="12.0" />
          </font>
          <toggleGroup>
-            <ToggleGroup fx:id="Sexo" />
+            <ToggleGroup fx:id="sexo" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="133.0" layoutY="339.0" mnemonicParsing="false" prefWidth="114.0" text="Feminino" toggleGroup="$Sexo">
+      <RadioButton layoutX="133.0" layoutY="339.0" mnemonicParsing="false" prefWidth="114.0" text="Feminino" toggleGroup="$sexo">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
          </font>
