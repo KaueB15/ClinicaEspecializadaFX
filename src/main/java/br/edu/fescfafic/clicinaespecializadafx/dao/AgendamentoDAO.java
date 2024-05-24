@@ -14,16 +14,12 @@ public class AgendamentoDAO {
         return emc;
     }
 
-    public void criarAgendamento(Agendamento agendamento) {
+    public void inserirAgendamento(Agendamento agendamento) {
         getEmc().getEntityManager().getTransaction().begin();
         getEmc().getEntityManager().persist(agendamento);
         getEmc().getEntityManager().getTransaction().commit();
     }
-    public void agendarHorario(Agendamento agendamento) {
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().persist(agendamento);
-        getEmc().getEntityManager().getTransaction().commit();
-    }
+
 
     public List<Agendamento> getAgendament() {
         TypedQuery<Agendamento> query = getEmc().getEntityManager().createNamedQuery("listarTodos", Agendamento.class);
