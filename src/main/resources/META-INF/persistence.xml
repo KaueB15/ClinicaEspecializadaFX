@@ -6,6 +6,11 @@
 
     <persistence-unit name="clinicaespecializadafx" transaction-type="RESOURCE_LOCAL">
 
+        <class>br.edu.fescfafic.clicinaespecializadafx.domain.Agendamento</class>
+        <class>br.edu.fescfafic.clicinaespecializadafx.domain.Login</class>
+        <class>br.edu.fescfafic.clicinaespecializadafx.domain.Medico</class>
+        <class>br.edu.fescfafic.clicinaespecializadafx.domain.Paciente</class>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" /> <!-- DB Driver -->
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/clinicaespecializadafx" /> <!-- BD Mane -->

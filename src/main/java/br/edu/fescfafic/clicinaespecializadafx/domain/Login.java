@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-//@Data
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +11,15 @@ public class Login {
     @Column(unique = true)
     private String login;
     private String senha;
+
+    public Login() {
+    }
+
+    public Login(int id, String login, String senha) {
+        this.id = id;
+        this.login = login;
+        this.senha = senha;
+    }
 
     public int getId() {
         return id;

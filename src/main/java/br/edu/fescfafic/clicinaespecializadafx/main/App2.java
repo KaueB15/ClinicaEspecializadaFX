@@ -3,6 +3,7 @@ package br.edu.fescfafic.clicinaespecializadafx.main;
 import br.edu.fescfafic.clicinaespecializadafx.dao.AgendamentoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.SendSMSDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
@@ -50,10 +51,13 @@ public class App2 {
 //        agendamento.setIdPaciente(pacienteVictor);
 //
 //        agendamentoDao.agendarHorario(agendamento);
-        PacienteDAO pacienteDAO = new PacienteDAO();
-        pacienteDAO.getEmc().getEntityManager().clear();
+//        var pacienteDAO = new PacienteDAO();
+//        pacienteDAO.getEmc().getEntityManager().clear();
+//
+//        System.out.println("Tabelas Geradas com Sucesso!!!!!");
 
-        System.out.println("Tabelas Geradas com Sucesso!!!!!");
+        SendSMSDAO sendSMSDAO = new SendSMSDAO();
+        sendSMSDAO.sendSMS("+5511987069733");
     }
 }
 

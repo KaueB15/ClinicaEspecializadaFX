@@ -6,8 +6,8 @@ import br.edu.fescfafic.clicinaespecializadafx.persistence.EntityManagerConnecti
 import java.util.List;
 
 public class PacienteDAO {
-    private EntityManagerConnection emc=new EntityManagerConnection();
 
+    private EntityManagerConnection emc = new EntityManagerConnection();
 
     public EntityManagerConnection getEmc() {
         return emc;
