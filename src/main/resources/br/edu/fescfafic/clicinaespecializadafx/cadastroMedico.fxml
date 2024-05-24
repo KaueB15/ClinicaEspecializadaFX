@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.CadastroMedicoController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="91.0" layoutX="20.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="565.0" />
+      <Label layoutX="46.0" layoutY="78.0" text="é rápido e fácil." textFill="WHITE">
+         <font>
+            <Font name="Leelawadee UI" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="45.0" prefWidth="173.0" text="Cadastre-se" textFill="WHITE">
+         <font>
+            <Font name="Leelawadee UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <Line endX="435.0" layoutX="146.0" layoutY="113.0" startX="-124.0" strokeWidth="0.4" />
+      <ImageView fitHeight="56.0" fitWidth="192.0" layoutX="374.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo_menor.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="fieldName" layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome Completo">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldCPF" layoutX="335.0" layoutY="169.0" prefHeight="25.0" prefWidth="249.0" promptText="CPF">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldLogin" layoutX="22.0" layoutY="272.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome de Usuário">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldPassword" layoutX="333.0" layoutY="272.0" prefHeight="25.0" prefWidth="249.0" promptText="Senha">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldPhone" layoutX="335.0" layoutY="221.0" prefHeight="25.0" prefWidth="249.0" promptText="CRM">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btnFinalizarCadastro" layoutX="333.0" layoutY="320.0" mnemonicParsing="false"  prefHeight="56.0" prefWidth="249.0" styleClass="btn-finalizar-cadastro" text="Cadastre-se">
+         <font>
+            <Font name="Leelawadee UI Bold" size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="22.0" layoutY="122.0" text="Cadastro de Médico">
+         <font>
+            <Font name="Leelawadee UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonReturnCadastro" layoutX="237.0" layoutY="331.0" mnemonicParsing="false" onAction="#onVoltarButtonClick" prefHeight="35.0" prefWidth="78.0" styleClass="btn-voltar-paciente" stylesheets="@styles.css" text="Voltar" textFill="WHITE">
+         <font>
+            <Font name="Leelawadee UI Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="fieldName1" layoutX="22.0" layoutY="221.0" prefHeight="25.0" prefWidth="295.0" promptText="Especialidade">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

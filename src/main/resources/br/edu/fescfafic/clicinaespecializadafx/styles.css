@@ -48,11 +48,11 @@
 }
 
 .btn-voltar-paciente{
-    -fx-background-color: #0e4b88;
+    -fx-background-color: #125da4;
     -fx-text-fill: white;
 }
 
 .btn-voltar-paciente:hover{
-    -fx-background-color: #0e4b88;
+    -fx-background-color: #073059;
     -fx-text-fill: white;
 }

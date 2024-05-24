@@ -28,18 +28,24 @@ public class CadastroController {
     protected void onPacienteButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/cadastroPaciente.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
-        Scene cadastroScene = new Scene(cadastroRoot);
+        Scene cadastroPacienteScene = new Scene(cadastroRoot);
 
         Stage stage = (Stage) pacienteButton.getScene().getWindow();
-        stage.setScene(cadastroScene);
+        stage.setScene(cadastroPacienteScene);
         stage.setTitle("Cadastro Paciente");
         stage.show();
     }
 
     @FXML
-    protected void onMedicoButtonClick(ActionEvent event) {
-        // Lógica para lidar com o clique no botão do médico
-        System.out.println("Botão do Médico clicado!");
+    protected void onMedicoButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/cadastroMedico.fxml"));
+        Parent cadastroRoot = fxmlLoader.load();
+        Scene cadastroMedicoScene = new Scene(cadastroRoot);
+
+        Stage stage = (Stage) medicoButton.getScene().getWindow();
+        stage.setScene(cadastroMedicoScene);
+        stage.setTitle("Cadastro Médico");
+        stage.show();
     }
 
     @FXML

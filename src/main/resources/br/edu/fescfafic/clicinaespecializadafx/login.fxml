@@ -18,33 +18,33 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="110.0" fitWidth="107.0" layoutX="416.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="110.0" fitWidth="107.0" layoutX="416.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icons/hospital.png" />
          </image>
       </ImageView>
-      <Label layoutX="383.0" layoutY="183.0" text="User">
+      <Label layoutX="383.0" layoutY="154.0" text="User">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="382.0" layoutY="205.0" prefHeight="25.0" prefWidth="179.0" />
-      <Label layoutX="383.0" layoutY="237.0" text="Senha">
+      <TextField layoutX="382.0" layoutY="176.0" prefHeight="25.0" prefWidth="179.0" />
+      <Label layoutX="383.0" layoutY="208.0" text="Senha">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="441.0" layoutY="295.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="441.0" layoutY="266.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
          <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <PasswordField layoutX="382.0" layoutY="258.0" prefHeight="25.0" prefWidth="179.0" />
-      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="409.0" layoutY="356.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE">
+      <PasswordField layoutX="382.0" layoutY="229.0" prefHeight="25.0" prefWidth="179.0" />
+      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="409.0" layoutY="327.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE">
 
          <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font></Button>
-      <Label layoutX="467.0" layoutY="332.0" text="ou" />
+      <Label layoutX="467.0" layoutY="303.0" text="ou" />
    </children>
 </AnchorPane>
