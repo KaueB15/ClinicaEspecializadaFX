@@ -2,63 +2,38 @@ package br.edu.fescfafic.clicinaespecializadafx.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class Agendamento {
+@AllArgsConstructor
+@NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "listarTodos", query = "select dh from Agendamento dh "),
+        @NamedQuery(name = "buscarPorMedico", query = "select m from Medico m"),
+        @NamedQuery(name = "buscarPorPaciente", query = "select p from Paciente p"),
+        @NamedQuery(name = "verificarDisponibilidade", query = "select hm from Agendamento hm where hm.dataHoraInicio=:dataHora"),
 
+        @NamedQuery(name = "valida.agendamento", query = "SELECT a FROM Agendamento a WHERE a.medico.id = :medico AND" +
+                " ((:inicioAtendimento BETWEEN a.dataHoraInicio AND a.dataHoraFim) OR" +
+                " (:fimAtendimento BETWEEN a.dataHoraInicio AND a.dataHoraFim))")
+})
+public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(unique = true)
-    private LocalDateTime dataHora;
-    @OneToOne
-    private Medico idMedico;
-    @OneToOne
-    private Paciente idPaciente;
+    private LocalDateTime dataHoraInicio;
+    @Column(unique = true)
+    private LocalDateTime dataHoraFim;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Medico medico;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Paciente paciente;
 
-    public Agendamento() {
-    }
 
-    public Agendamento(int id, LocalDateTime dataHora, Medico idMedico, Paciente idPaciente) {
-        this.id = id;
-        this.dataHora = dataHora;
-        this.idMedico = idMedico;
-        this.idPaciente = idPaciente;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
-
-    public Medico getIdMedico() {
-        return idMedico;
-    }
-
-    public void setIdMedico(Medico idMedico) {
-        this.idMedico = idMedico;
-    }
-
-    public Paciente getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(Paciente idPaciente) {
-        this.idPaciente = idPaciente;
-    }
 }
