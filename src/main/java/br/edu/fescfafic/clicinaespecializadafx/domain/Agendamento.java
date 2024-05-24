@@ -29,7 +29,7 @@ public class Agendamento {
     @Column(unique = true)
     private LocalDateTime dataHoraFim;
     @OneToOne
-    private Medico idMedico;
+    private Medico medico;
     @OneToOne
-    private Paciente idPaciente;
+    private Paciente paciente;
 }
