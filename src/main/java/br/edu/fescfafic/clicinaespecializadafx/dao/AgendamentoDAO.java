@@ -14,18 +14,14 @@ public class AgendamentoDAO {
         return emc;
     }
 
-    public void criarAgendamento(Agendamento agendamento) {
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().persist(agendamento);
-        getEmc().getEntityManager().getTransaction().commit();
-    }
-    public void agendarHorario(Agendamento agendamento) {
+    public void inserirAgendamento(Agendamento agendamento) {
         getEmc().getEntityManager().getTransaction().begin();
         getEmc().getEntityManager().persist(agendamento);
         getEmc().getEntityManager().getTransaction().commit();
     }
 
-    public List<Agendamento> getAgendament() {
+
+    public List<Agendamento> listarAgendamentos() {
         TypedQuery<Agendamento> query = getEmc().getEntityManager().createNamedQuery("listarTodos", Agendamento.class);
         return query.getResultList();
 
@@ -49,6 +45,8 @@ public class AgendamentoDAO {
         }
         return 0;
     }
+
+    //Esse método DEVE impedir que os agendamentos sejam realizados se outro estiver em curso, com um respectivo médico
     public Agendamento verificarDisponibilidadeMarcacao(LocalDateTime dataHoraDesejada, int idMedico) {
         LocalDateTime inicioAtendimento = dataHoraDesejada;
         LocalDateTime fimAtendimento = inicioAtendimento.plusMinutes(45);
@@ -76,5 +74,23 @@ public class AgendamentoDAO {
         return null;
     }
 
+    public void removerAgendamento(Agendamento agendamento) {
+        getEmc().getEntityManager().getTransaction().begin();
+        List<Agendamento> agendados = listarAgendamentos();
+        agendados.remove(agendamento);
+        getEmc().getEntityManager().getTransaction().commit();
+        System.out.println("Agendamento removido com sucesso!" + agendamento);
+    }
+
+    public void atualizarAgendamento(Agendamento agendamento) {
+        getEmc().getEntityManager().getTransaction().begin();
+        getEmc().getEntityManager().merge(agendamento);
+        getEmc().getEntityManager().getTransaction().commit();
+        System.out.println("Agendamento atualizado com sucesso!");
+    }
+
 
 }
+
+
+

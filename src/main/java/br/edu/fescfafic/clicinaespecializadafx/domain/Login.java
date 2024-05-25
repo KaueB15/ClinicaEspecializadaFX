@@ -1,12 +1,16 @@
 package br.edu.fescfafic.clicinaespecializadafx.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@NamedQueries({@NamedQuery(name = "listarLogins", query = "select l from Login l")
+})
 public class Login {
     @Id
     private String login;
