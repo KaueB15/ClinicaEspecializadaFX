@@ -47,8 +47,8 @@ public class AgendamentoDAO {
     }
 
     //Esse método DEVE impedir que os agendamentos sejam realizados se outro estiver em curso, com um respectivo médico
-    public Agendamento verificarDisponibilidadeMarcacao(LocalDateTime dataHoraDesejada, int idMedico) {
-        LocalDateTime inicioAtendimento = dataHoraDesejada;
+    public Agendamento verificarDisponibilidadeMarcacao(LocalDateTime dataHoraAtendimento, int idMedico) {
+        LocalDateTime inicioAtendimento = dataHoraAtendimento;
         LocalDateTime fimAtendimento = inicioAtendimento.plusMinutes(45);
 
         try {
