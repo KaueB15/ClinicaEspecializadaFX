@@ -57,8 +57,11 @@ public class AgendamentoDAO {
             query.setParameter("fimAtendimento", fimAtendimento);
             query.setParameter("medico", idMedico);
 
-            Agendamento result = query.getSingleResult();
-            System.out.println("Horário já reservado para outro agendamento: " + result);
+            List<Agendamento> agendamentos = query.getResultList();
+            if (!agendamentos.isEmpty()) {
+                System.out.println("Horário já reservado para outro agendamento: " + agendamentos.get(0));
+                return null;
+            }
 
             Agendamento novoAgendamento = new Agendamento();
             novoAgendamento.setDataHoraInicio(inicioAtendimento);
@@ -67,11 +70,12 @@ public class AgendamentoDAO {
 
             getEmc().getEntityManager().getTransaction().commit();
             System.out.println("Atendimento agendado para " + inicioAtendimento + " - " + fimAtendimento);
+            return novoAgendamento;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            getEmc().getEntityManager().getTransaction().rollback();
+            System.out.println("Erro ao agendar: " + e.getMessage());
+            return null;
         }
-
-        return null;
     }
 
     public void removerAgendamento(Agendamento agendamento) {
@@ -79,7 +83,7 @@ public class AgendamentoDAO {
         List<Agendamento> agendados = listarAgendamentos();
         agendados.remove(agendamento);
         getEmc().getEntityManager().getTransaction().commit();
-        System.out.println("Agendamento removido com sucesso!" + agendamento);
+        System.out.println("Agendamento removido com sucesso!");
     }
 
     public void atualizarAgendamento(Agendamento agendamento) {
