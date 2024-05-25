@@ -56,3 +56,29 @@
     -fx-background-color: #073059;
     -fx-text-fill: white;
 }
+
+.btn-agendar {
+    -fx-background-color: #4fd906;
+    -fx-text-fill: white;
+}
+
+.btn-agendar:hover {
+    -fx-background-color: #2f8804;
+    -fx-text-fill: white;
+}
+
+.btn-cancelar-consulta {
+    -fx-background-color: #ee041c;
+    -fx-text-fill: white;
+}
+
+.btn-cancelar-consulta:hover {
+    -fx-background-color: #880404;
+    -fx-text-fill: white;
+}
+
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
