@@ -105,8 +105,15 @@ public class CadastroPacienteController {
             System.out.println("Cadastrado");
         }catch (ConstraintViolationException e){
             System.err.println("Algum valor está duplicado no banco de dados");
-            errorMessage.setText("Dados já cadastrados!!!");
+            mostrarAlertaDadosJaCadastrados();
+
         }
 
+}
+    private void mostrarAlertaDadosJaCadastrados() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro de Cadastro");
+        alert.setHeaderText("Dados já cadastrados");
+        alert.setContentText("Os dados fornecidos já estão cadastrados no sistema.");
     }
 }
