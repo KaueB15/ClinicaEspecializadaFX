@@ -18,10 +18,11 @@ public class AgendamentoDAO {
         getEmc().getEntityManager().getTransaction().begin();
         getEmc().getEntityManager().persist(agendamento);
         getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
     }
 
 
-    public List<Agendamento> getAgendament() {
+    public List<Agendamento> listarAgendamentos() {
         TypedQuery<Agendamento> query = getEmc().getEntityManager().createNamedQuery("listarTodos", Agendamento.class);
         return query.getResultList();
 
@@ -46,5 +47,57 @@ public class AgendamentoDAO {
         return 0;
     }
 
+    //Esse método DEVE impedir que os agendamentos sejam realizados se outro estiver em curso, com um respectivo médico
+    public Agendamento verificarDisponibilidadeMarcacao(LocalDateTime dataHoraAtendimento, int idMedico) {
+        LocalDateTime inicioAtendimento = dataHoraAtendimento;
+        LocalDateTime fimAtendimento = inicioAtendimento.plusMinutes(45);
+
+        try {
+            TypedQuery<Agendamento> query = getEmc().getEntityManager().createNamedQuery("valida.agendamento", Agendamento.class);
+            query.setParameter("inicioAtendimento", inicioAtendimento);
+            query.setParameter("fimAtendimento", fimAtendimento);
+            query.setParameter("medico", idMedico);
+
+            List<Agendamento> agendamentos = query.getResultList();
+            if (!agendamentos.isEmpty()) {
+                System.out.println("Horário já reservado para outro agendamento: " + agendamentos.get(0));
+                return null;
+            }
+
+            Agendamento novoAgendamento = new Agendamento();
+            novoAgendamento.setDataHoraInicio(inicioAtendimento);
+            novoAgendamento.setDataHoraFim(fimAtendimento);
+            getEmc().getEntityManager().persist(novoAgendamento);
+            getEmc().getEntityManager().getTransaction().commit();
+            getEmc().getEntityManager().close();
+            System.out.println("Atendimento agendado para " + inicioAtendimento + " - " + fimAtendimento);
+            return novoAgendamento;
+        } catch (Exception e) {
+            getEmc().getEntityManager().getTransaction().rollback();
+            System.out.println("Erro ao agendar: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public void removerAgendamento(Agendamento agendamento) {
+        getEmc().getEntityManager().getTransaction().begin();
+        List<Agendamento> agendados = listarAgendamentos();
+        agendados.remove(agendamento);
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+        System.out.println("Agendamento removido com sucesso!");
+    }
+
+    public void atualizarAgendamento(Agendamento agendamento) {
+        getEmc().getEntityManager().getTransaction().begin();
+        getEmc().getEntityManager().merge(agendamento);
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+        System.out.println("Agendamento atualizado com sucesso!");
+    }
+
+
 }
+
+
 

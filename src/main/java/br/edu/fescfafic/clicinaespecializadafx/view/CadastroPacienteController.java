@@ -79,7 +79,7 @@ public class CadastroPacienteController {
 
     @FXML
     protected void onCasdastrarPaciente(ActionEvent event) throws IOException{
-        errorMessage.setText("");
+
         PacienteDAO pacienteDAO = new PacienteDAO();
         LoginDAO loginDAO = new LoginDAO();
 

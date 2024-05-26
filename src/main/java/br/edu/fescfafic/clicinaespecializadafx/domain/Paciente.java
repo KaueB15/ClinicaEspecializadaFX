@@ -11,6 +11,10 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "pacientes.getAll", query = "select p from Paciente p"),
+        @NamedQuery(name = "pacientes.getByCpf", query = "select p from Paciente p where p.cpf=:cpf")
+})
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

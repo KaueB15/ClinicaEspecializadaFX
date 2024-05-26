@@ -20,6 +20,8 @@ public class PacienteDAO {
         getEmc().getEntityManager().persist(paciente);
         // Confirmação da transação
         getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+
     }
 
     public List<Paciente> listarPacientes() {
@@ -44,13 +46,23 @@ public class PacienteDAO {
         var paciente = buscarPorCpf(cpf);
         getEmc().getEntityManager().remove(paciente);
         getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
     }
 
     public void deletarPorId(int id) {
         var paciente = findById(id);
         getEmc().getEntityManager().remove(paciente);
         getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
     }
-    //TODO:Ainda falta definir o metodo de atualizar, pois pretendo disponibilizar atualização de dados individuais
+    public void atualizarPaciente(Paciente paciente) {
+        // Inicia a transação com o BD
+        getEmc().getEntityManager().getTransaction().begin();
+        // Realiza a percistencia na tabela
+        getEmc().getEntityManager().merge(paciente);
+        // Confirmação da transação
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+    }
 
 }

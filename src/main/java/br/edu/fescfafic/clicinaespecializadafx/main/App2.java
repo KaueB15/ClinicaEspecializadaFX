@@ -15,19 +15,19 @@ public class App2 {
 //        System.out.println("Criando Tabelas...");
 
         // Cadastro de paciente
-        Login loginVictor = new Login();
-        loginVictor.setLogin("Victor");
-        loginVictor.setSenha("123");
+        Login loginKokin = new Login();
+        loginKokin.setLogin("kokin2");
+        loginKokin.setSenha("123");
 
-        loginDao.inserirLogin(loginVictor);
+        loginDao.inserirLogin(loginKokin);
 
-        var pacienteVictor = new Paciente();
-        pacienteVictor.setNome("Victor");
-        pacienteVictor.setCpf("222222222");
-        pacienteVictor.setTelefonePaciente("(83) 9 8156-9632");
-        pacienteVictor.setLogin(loginVictor);
+        var pacienteKokin = new Paciente();
+        pacienteKokin.setNome("Kokin");
+        pacienteKokin.setCpf("222222222");
+        pacienteKokin.setTelefonePaciente("(83) 9 8156-9632");
+        pacienteKokin.setLogin(loginKokin);
 
-        pacienteDao.cadastrarPaciente(pacienteVictor);
+        pacienteDao.cadastrarPaciente(pacienteKokin);
 //
 //        // Cadastro de médico
 //        var medZack = new Medico();
