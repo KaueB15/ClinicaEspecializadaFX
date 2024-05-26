@@ -37,5 +37,43 @@ public class Agendamento {
     @OneToOne(cascade = CascadeType.ALL)
     private Paciente paciente;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataHoraInicio() {
+        return dataHoraInicio;
+    }
+
+    public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
+        this.dataHoraInicio = dataHoraInicio;
+    }
+
+    public LocalDateTime getDataHoraFim() {
+        return dataHoraFim;
+    }
+
+    public void setDataHoraFim(LocalDateTime dataHoraFim) {
+        this.dataHoraFim = dataHoraFim;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
 }

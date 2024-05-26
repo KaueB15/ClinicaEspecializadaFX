@@ -14,12 +14,24 @@ public class LoginDAO {
     }
 
     public void inserirLogin(Login login) {
-        // Inicia a transação com o BD
-        getEmc().getEntityManager().getTransaction().begin();
-        // Realiza a percistencia na tabela
-        getEmc().getEntityManager().persist(login);
-        // Confirmação da transação
-        getEmc().getEntityManager().getTransaction().commit();
+        try {
+            getEmc().getEntityManager().getTransaction().begin();
+            // Realiza a percistencia na tabela
+            getEmc().getEntityManager().persist(login);
+            // Confirmação da transação
+            getEmc().getEntityManager().getTransaction().commit();
+
+        }finally {
+            getEmc().getEntityManager().close();
+        }
+//        // Inicia a transação com o BD
+//        getEmc().getEntityManager().getTransaction().begin();
+//        // Realiza a percistencia na tabela
+//        getEmc().getEntityManager().persist(login);
+//        // Confirmação da transação
+//        getEmc().getEntityManager().getTransaction().commit();
+//        //
+//        getEmc().getEntityManager().close();
     }
 
     public void validarLogin(String user, String password) {

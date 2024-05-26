@@ -14,13 +14,17 @@ public class MedicoDAO {
     }
 
     public void cadastrarMedico(Medico medico) {
-        // Inicia a transação com o BD
-        getEmc().getEntityManager().getTransaction().begin();
-        // Realiza a percistencia na tabela
-        getEmc().getEntityManager().persist(medico);
-        // Confirmação da transação
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
+        try {
+            // Inicia a transação com o BD
+            getEmc().getEntityManager().getTransaction().begin();
+            // Realiza a percistencia na tabela
+            getEmc().getEntityManager().persist(medico);
+            // Confirmação da transação
+            getEmc().getEntityManager().getTransaction().commit();
+        }finally {
+            getEmc().getEntityManager().close();
+        }
+
     }
 
     public List<Medico> listarMedico() {

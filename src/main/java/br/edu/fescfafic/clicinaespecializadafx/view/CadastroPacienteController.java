@@ -78,7 +78,10 @@ public class CadastroPacienteController {
     }
 
     @FXML
-    protected void onCasdastrarPaciente(ActionEvent event) throws IOException{
+    protected void onCasdastrarPaciente(ActionEvent event) throws IOException {
+
+        errorMessage.setText(" ");
+        cadastroMessage.setText("");
 
         PacienteDAO pacienteDAO = new PacienteDAO();
         LoginDAO loginDAO = new LoginDAO();
@@ -89,7 +92,7 @@ public class CadastroPacienteController {
         String pacientePassword = fieldPassword.getText();
         String pacientePhone = fieldPhone.getText();
         LocalDate pacienteDate = fieldDate.getValue();
-        String pacienteSexo = ((RadioButton)sexo.getSelectedToggle()).getText();
+        String pacienteSexo = ((RadioButton) sexo.getSelectedToggle()).getText();
 
         try {
             Login pacienteLoginSenha = returnLogin(pacientePassword, pacienteLogin);
@@ -101,19 +104,12 @@ public class CadastroPacienteController {
 
             pacienteDAO.cadastrarPaciente(paciente);
 
-            cadastroMessage.setText("Cadastrado com sucesso!!!");
+            cadastroMessage.setText("Cadastrado com Sucesso!!!");
             System.out.println("Cadastrado");
-        }catch (ConstraintViolationException e){
+        } catch (ConstraintViolationException e) {
+            errorMessage.setText("Dados já Cadastrados!!!");
             System.err.println("Algum valor está duplicado no banco de dados");
-            mostrarAlertaDadosJaCadastrados();
-
         }
 
-}
-    private void mostrarAlertaDadosJaCadastrados() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erro de Cadastro");
-        alert.setHeaderText("Dados já cadastrados");
-        alert.setContentText("Os dados fornecidos já estão cadastrados no sistema.");
     }
 }
