@@ -128,14 +128,14 @@ public class CadastroPacienteController {
 
                 loginDAO.inserirLogin(pacienteLoginSenha);
 
-                insertsDataBase += 1;
+                insertsDataBase = 1;
 
                 Paciente paciente = returnPaciente(pacienteName, pacienteCPF, pacienteLoginSenha, pacientePhone, pacienteSexo,
                         pacienteDate);
 
                 pacienteDAO.cadastrarPaciente(paciente);
 
-                insertsDataBase += 2;
+                insertsDataBase = 10;
 
                 cadastroMessage.setText("Cadastrado com Sucesso!!!");
                 System.out.println("Cadastrado");
@@ -147,10 +147,12 @@ public class CadastroPacienteController {
             errorMessage.setText("Dados já Cadastrados!!!");
             System.err.println("Algum valor está duplicado no banco de dados");
 
+            LoginDAO daoLogin = new LoginDAO();
+
             if (insertsDataBase == 1){
-                loginDAO.deletarLogin(pacienteLogin);
+                daoLogin.deletarLogin(pacienteLogin);
             }
-            // Colocar metodo de apagar Login
+
 
         }catch (FieldNullException e){
             errorMessage.setText("Campos Invalidos!!!");
