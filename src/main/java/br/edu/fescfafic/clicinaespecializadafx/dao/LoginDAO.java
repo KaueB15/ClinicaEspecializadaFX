@@ -58,16 +58,20 @@ public class LoginDAO {
         getEmc().getEntityManager().getTransaction().begin();
         var query = getEmc().getEntityManager().createNamedQuery("listarLogins", Login.class);
         return query.getResultList();
+
     }
 
-    public void deletarLogin(Login login) {
-        try{
-            getEmc().getEntityManager().getTransaction().begin();
-            getEmc().getEntityManager().remove(login);
-            getEmc().getEntityManager().getTransaction().commit();
-        }finally {
-            getEmc().getEntityManager().close();
+    public void deletarLogin(String string) {
+        List<Login> logins = getAll();
+
+        for (Login login : logins){
+            if(login.getLogin().equals(string)){
+                getEmc().getEntityManager().remove(login);
+                getEmc().getEntityManager().getTransaction().commit();
+                getEmc().getEntityManager().close();
+            }
         }
+
     }
 }
 

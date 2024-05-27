@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@NamedQueries({@NamedQuery(name = "listarLogins", query = "select l from Login l")
+@NamedQueries({@NamedQuery(name = "listarLogins", query = "select l from Login l"),
+@NamedQuery(name="removerLogin",query="select log from Login log where log.login =:login")
 })
 public class Login {
     @Id

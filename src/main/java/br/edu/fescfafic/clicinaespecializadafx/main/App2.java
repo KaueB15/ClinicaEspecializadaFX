@@ -5,6 +5,8 @@ import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 
+import java.util.List;
+
 public class App2 {
     public static void main(String[] args) {
         var pacienteDao = new PacienteDAO();
@@ -12,22 +14,29 @@ public class App2 {
         var agendamentoDao = new AgendamentoDAO();
         var loginDao = new LoginDAO();
 
+
+
+//        Login logins = loginDao.acharLogin("JOAO");
+
+
 //        System.out.println("Criando Tabelas...");
 
         // Cadastro de paciente
-        Login loginKokin = new Login();
-        loginKokin.setLogin("kokin2");
-        loginKokin.setSenha("123");
+//        Login loginKokin = new Login();
+//        loginKokin.setLogin("JOAO");
+//        loginKokin.setSenha("123");
+//
+////        loginDao.inserirLogin(loginKokin);
+//
+        loginDao.deletarLogin("açai123");
 
-        loginDao.inserirLogin(loginKokin);
-
-        var pacienteKokin = new Paciente();
-        pacienteKokin.setNome("Kokin");
-        pacienteKokin.setCpf("222222222");
-        pacienteKokin.setTelefonePaciente("(83) 9 8156-9632");
-        pacienteKokin.setLogin(loginKokin);
-
-        pacienteDao.cadastrarPaciente(pacienteKokin);
+//        var pacienteKokin = new Paciente();
+//        pacienteKokin.setNome("Kokin");
+//        pacienteKokin.setCpf("222222222");
+//        pacienteKokin.setTelefonePaciente("(83) 9 8156-9632");
+//        pacienteKokin.setLogin(loginKokin);
+//
+//        pacienteDao.cadastrarPaciente(pacienteKokin);
 //
 //        // Cadastro de médico
 //        var medZack = new Medico();

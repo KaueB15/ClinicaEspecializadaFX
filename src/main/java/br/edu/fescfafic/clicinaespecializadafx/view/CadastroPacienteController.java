@@ -147,6 +147,9 @@ public class CadastroPacienteController {
             errorMessage.setText("Dados já Cadastrados!!!");
             System.err.println("Algum valor está duplicado no banco de dados");
 
+            if (insertsDataBase == 1){
+                loginDAO.deletarLogin(pacienteLogin);
+            }
             // Colocar metodo de apagar Login
 
         }catch (FieldNullException e){
