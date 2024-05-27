@@ -4,6 +4,7 @@ import br.edu.fescfafic.clicinaespecializadafx.dao.LoginDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
+import br.edu.fescfafic.clicinaespecializadafx.exceptions.FieldNullException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,6 +64,29 @@ public class CadastroPacienteController {
     }
 
     @FXML
+    protected boolean fieldVerification(){
+        boolean returnVerification;
+
+        boolean nameVerification = fieldName.getText() == null;
+        boolean cpfVerification = fieldCPF.getText() == null;
+        boolean loginVerification = fieldLogin.getText() == null;
+        boolean passwordVerification = fieldPassword.getText() == null;
+        boolean phoneVerification = fieldPhone.getText() == null;
+        boolean dateVerification = fieldDate.getValue() == null;
+        boolean sexVerification = sexo.getSelectedToggle() == null;
+
+        if(nameVerification || cpfVerification || loginVerification || passwordVerification ||
+                phoneVerification || dateVerification || sexVerification){
+
+            returnVerification = false;
+        }else{
+            returnVerification = true;
+        }
+
+        return returnVerification;
+    }
+
+    @FXML
     protected Paciente returnPaciente(String pacienteName, String pacienteCPF, Login pacienteLoginSenha,
                                   String pacientePhone, String pacienteSexo, LocalDate pacienteDate){
         Paciente paciente = new Paciente();
@@ -94,21 +118,31 @@ public class CadastroPacienteController {
         LocalDate pacienteDate = fieldDate.getValue();
         String pacienteSexo = ((RadioButton) sexo.getSelectedToggle()).getText();
 
+        boolean verification = fieldVerification();
+
         try {
-            Login pacienteLoginSenha = returnLogin(pacientePassword, pacienteLogin);
+            if (verification){
+                Login pacienteLoginSenha = returnLogin(pacientePassword, pacienteLogin);
 
-            loginDAO.inserirLogin(pacienteLoginSenha);
+                loginDAO.inserirLogin(pacienteLoginSenha);
 
-            Paciente paciente = returnPaciente(pacienteName, pacienteCPF, pacienteLoginSenha, pacientePhone, pacienteSexo,
-                    pacienteDate);
+                Paciente paciente = returnPaciente(pacienteName, pacienteCPF, pacienteLoginSenha, pacientePhone, pacienteSexo,
+                        pacienteDate);
 
-            pacienteDAO.cadastrarPaciente(paciente);
+                pacienteDAO.cadastrarPaciente(paciente);
 
-            cadastroMessage.setText("Cadastrado com Sucesso!!!");
-            System.out.println("Cadastrado");
+                cadastroMessage.setText("Cadastrado com Sucesso!!!");
+                System.out.println("Cadastrado");
+            }else{
+                throw new FieldNullException();
+            }
+
         } catch (ConstraintViolationException e) {
             errorMessage.setText("Dados já Cadastrados!!!");
             System.err.println("Algum valor está duplicado no banco de dados");
+        }catch (FieldNullException e){
+            errorMessage.setText("Campos Invalidos!!!");
+            System.err.println(e);
         }
 
     }
