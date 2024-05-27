@@ -24,11 +24,15 @@ public class LoginController {
     private Button cadastroButton;
 
     @FXML
-    protected void onHelloButtonClick() {
-        String login = loginField.getText();
-        String password = new String(this.passwordField.getText());
-        loginButton.setText("Login - " + login + "\n" + "Senha - " + password);
-//        Inserir aqui o código de validação do login
+    protected void onLoginButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agendamento.fxml"));
+        Parent cadastroRoot = fxmlLoader.load();
+        Scene cadastroScene = new Scene(cadastroRoot);
+
+        Stage stage = (Stage) cadastroButton.getScene().getWindow();
+        stage.setScene(cadastroScene);
+        stage.setTitle("Cadastro");
+        stage.show();
     }
     @FXML
     protected void onCadastroButtonClick() throws IOException {

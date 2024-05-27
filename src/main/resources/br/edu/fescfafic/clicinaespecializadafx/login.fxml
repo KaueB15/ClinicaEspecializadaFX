@@ -34,7 +34,7 @@
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="441.0" layoutY="266.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="441.0" layoutY="266.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
          <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font>

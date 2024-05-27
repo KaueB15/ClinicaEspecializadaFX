@@ -65,6 +65,7 @@ public class CadastroPacienteController {
 
     @FXML
     protected boolean fieldVerification(){
+
         boolean returnVerification;
 
         boolean nameVerification = fieldName.getText() == null;
@@ -104,7 +105,7 @@ public class CadastroPacienteController {
     @FXML
     protected void onCasdastrarPaciente(ActionEvent event) throws IOException {
 
-        errorMessage.setText(" ");
+        errorMessage.setText("");
         cadastroMessage.setText("");
 
         PacienteDAO pacienteDAO = new PacienteDAO();
@@ -119,6 +120,7 @@ public class CadastroPacienteController {
         String pacienteSexo = ((RadioButton) sexo.getSelectedToggle()).getText();
 
         boolean verification = fieldVerification();
+        int insertsDataBase = 0;
 
         try {
             if (verification){
@@ -126,10 +128,14 @@ public class CadastroPacienteController {
 
                 loginDAO.inserirLogin(pacienteLoginSenha);
 
+                insertsDataBase += 1;
+
                 Paciente paciente = returnPaciente(pacienteName, pacienteCPF, pacienteLoginSenha, pacientePhone, pacienteSexo,
                         pacienteDate);
 
                 pacienteDAO.cadastrarPaciente(paciente);
+
+                insertsDataBase += 2;
 
                 cadastroMessage.setText("Cadastrado com Sucesso!!!");
                 System.out.println("Cadastrado");
@@ -137,9 +143,12 @@ public class CadastroPacienteController {
                 throw new FieldNullException();
             }
 
-        } catch (ConstraintViolationException e) {
+        }catch (ConstraintViolationException e) {
             errorMessage.setText("Dados já Cadastrados!!!");
             System.err.println("Algum valor está duplicado no banco de dados");
+
+            // Colocar metodo de apagar Login
+
         }catch (FieldNullException e){
             errorMessage.setText("Campos Invalidos!!!");
             System.err.println(e);
