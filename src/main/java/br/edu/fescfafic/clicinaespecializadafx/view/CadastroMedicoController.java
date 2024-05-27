@@ -1,10 +1,12 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
 
+import br.edu.fescfafic.clicinaespecializadafx.dao.LoginDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
+import br.edu.fescfafic.clicinaespecializadafx.exceptions.FieldNullException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +14,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -35,7 +39,10 @@ import java.time.LocalDate;
         private Button buttonReturnCadastro;
         @FXML
         private Button btnFinalizarCadastro;
-
+        @FXML
+        private Label cadastroMessage;
+        @FXML
+        private Label errorMessage;
         @FXML
         private Button btnCadastrarMedico;
 
@@ -47,7 +54,7 @@ import java.time.LocalDate;
 
             Stage stage = (Stage) btnFinalizarCadastro.getScene().getWindow();
             stage.setScene(cadastroScene);
-            stage.setTitle("Cadastro Medico");
+            stage.setTitle("Cadastro");
             stage.show();
         }
 
@@ -62,17 +69,31 @@ import java.time.LocalDate;
         }
 
         @FXML
-        protected void onCadastrarMedico(ActionEvent event) throws IOException{
-            String medicoName = fieldName.getText();
-            String medicoCPF = fieldCPF.getText();
-            String medicoLogin = fieldLogin.getText();
-            String medicoPassword = fieldPassword.getText();
-            String medicoCRM = fieldCRM.getText();
-            String medicoEspecialidade = fieldEspecialidade.getText();
+        protected boolean fieldVerification(){
 
+            boolean returnVerification;
 
-            Login medicoLoginSenha = returnLogin(medicoPassword, medicoLogin);
+            boolean nameVerification = fieldName.getText() == null;
+            boolean cpfVerification = fieldCPF.getText() == null;
+            boolean loginVerification = fieldLogin.getText() == null;
+            boolean passwordVerification = fieldPassword.getText() == null;
+            boolean especialidadeVerification = fieldEspecialidade.getText() == null;
+            boolean crmVerification = fieldCRM.getText() == null;
 
+            if(nameVerification || cpfVerification || loginVerification || passwordVerification ||
+                   especialidadeVerification || crmVerification){
+
+                returnVerification = false;
+            }else{
+                returnVerification = true;
+            }
+
+            return returnVerification;
+        }
+
+        @FXML
+        protected Medico returnMedico(String medicoName, String medicoCPF, Login medicoLoginSenha,
+                                          String medicoCRM, String medicoEspecialidade){
             Medico medico = new Medico();
 
             medico.setNome(medicoName);
@@ -81,9 +102,61 @@ import java.time.LocalDate;
             medico.setCrm(Integer.parseInt(medicoCRM));
             medico.setEspecialidade(medicoEspecialidade);
 
-            MedicoDAO medicoDAO = new MedicoDAO();
+            return medico;
+        }
 
-            medicoDAO.cadastrarMedico(medico);
+        @FXML
+        protected void onCadastrarMedico(ActionEvent event) throws IOException{
+
+            MedicoDAO medicoDAO = new MedicoDAO();
+            LoginDAO loginDAO = new LoginDAO();
+
+            String medicoName = fieldName.getText();
+            String medicoCPF = fieldCPF.getText();
+            String medicoLogin = fieldLogin.getText();
+            String medicoPassword = fieldPassword.getText();
+            String medicoCRM = fieldCRM.getText();
+            String medicoEspecialidade = fieldEspecialidade.getText();
+
+            boolean verificationField = fieldVerification();
+            int insertsDataBase = 0;
+
+            try {
+                if (verificationField){
+                    Login medicoLoginSenha = returnLogin(medicoPassword, medicoLogin);
+
+                    loginDAO.inserirLogin(medicoLoginSenha);
+
+                    insertsDataBase = 1;
+
+                    Medico medico = returnMedico(medicoName, medicoCPF, medicoLoginSenha, medicoCRM, medicoEspecialidade);
+
+                    medicoDAO.cadastrarMedico(medico);
+
+                    insertsDataBase = 10;
+
+                    cadastroMessage.setText("Cadastrado com Sucesso!!!");
+                    System.out.println("Cadastrado");
+                }else {
+                    throw new FieldNullException();
+                }
+            }catch (ConstraintViolationException e) {
+                errorMessage.setText("Dados já Cadastrados!!!");
+                System.err.println("Algum valor está duplicado no banco de dados");
+
+                LoginDAO daoLogin = new LoginDAO();
+
+                if (insertsDataBase == 1){
+                    daoLogin.deletarLogin(medicoLogin);
+                }
+
+
+            }catch (FieldNullException e){
+                errorMessage.setText("Campos Invalidos!!!");
+                System.err.println(e);
+            }
+
+
         }
     }
 
