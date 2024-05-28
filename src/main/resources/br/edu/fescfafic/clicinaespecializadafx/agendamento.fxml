@@ -48,7 +48,7 @@
                </image>
             </ImageView>
             <DatePicker fx:id="dataConsulta" layoutX="28.0" layoutY="226.0" prefHeight="30.0" prefWidth="224.0" />
-            <ComboBox fx:id="especialidade" layoutX="28.0" layoutY="170.0" prefHeight="30.0" prefWidth="224.0" />
+            <ComboBox fx:id="boxEspecialidade" layoutX="28.0" layoutY="170.0" prefHeight="30.0" prefWidth="224.0" onShowing="#onAgendarButtonClick"/>
             <Label layoutX="28.0" layoutY="152.0" text="ESCOLHA UMA ESPECIALIDADE" textFill="#8a8686">
                <font>
                   <Font name="Leelawadee UI Bold" size="12.0" />
@@ -72,7 +72,7 @@
                </font>
             </Label>
             <ButtonBar layoutX="90.0" layoutY="308.0" prefHeight="40.0" prefWidth="200.0" />
-            <Button id="btn-agendar" fx:id="agendar" layoutX="437.0" layoutY="226.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" styleClass="btn-agendar" stylesheets="@styles.css" text="Agendar">
+            <Button id="btn-agendar" fx:id="buttonAgendar" layoutX="437.0" layoutY="226.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" styleClass="btn-agendar" stylesheets="@styles.css" text="Agendar">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -83,7 +83,7 @@
                      <children>
                         <TableView editable="true" prefHeight="45.0" prefWidth="547.0">
                           <columns>
-                              <TableColumn prefWidth="219.0" text="Médico" />
+                              <TableColumn fx:id="tableMedico" prefWidth="219.0" text="Médico" />
                               <TableColumn prefWidth="149.0" text="Especialidade" />
                             <TableColumn prefWidth="85.0" text="Data" />
                             <TableColumn prefWidth="89.0" text="Hora" />
@@ -108,12 +108,12 @@
             </Label>
             <Button id="btn-cancelar-consulta" layoutX="437.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
             <Label layoutX="29.0" layoutY="365.0" prefHeight="17.0" prefWidth="369.0" textFill="RED" />
-            <Button id="btnSair" fx:id="sair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <Button fx:id="exitButton" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Sair" />
                </tooltip>
             </Button>
-            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />
                </tooltip>
