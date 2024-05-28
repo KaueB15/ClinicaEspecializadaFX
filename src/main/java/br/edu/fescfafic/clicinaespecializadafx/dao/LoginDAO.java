@@ -24,14 +24,6 @@ public class LoginDAO {
         }finally {
             getEmc().getEntityManager().close();
         }
-//        // Inicia a transação com o BD
-//        getEmc().getEntityManager().getTransaction().begin();
-//        // Realiza a percistencia na tabela
-//        getEmc().getEntityManager().persist(login);
-//        // Confirmação da transação
-//        getEmc().getEntityManager().getTransaction().commit();
-//        //
-//        getEmc().getEntityManager().close();
     }
 
     public void validarLogin(String user, String password) {
@@ -62,7 +54,10 @@ public class LoginDAO {
     }
 
     public void deletarLogin(String string) {
-        List<Login> logins = getAll();
+        getEmc().getEntityManager().getTransaction().begin();
+        var query = getEmc().getEntityManager().createNamedQuery("listarLogins", Login.class);
+
+        List<Login> logins = query.getResultList();
 
         for (Login login : logins){
             if(login.getLogin().equals(string)){
