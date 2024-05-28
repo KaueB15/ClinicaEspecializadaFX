@@ -83,12 +83,12 @@
                </font>
             </Label>
             <Button id="btn-cancelar-consulta" layoutX="232.0" layoutY="353.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
-            <Button id="btnSair" fx:id="sair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <Button id="btnSair" fx:id="sair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Sair" />
                </tooltip>
             </Button>
-            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />
                </tooltip>

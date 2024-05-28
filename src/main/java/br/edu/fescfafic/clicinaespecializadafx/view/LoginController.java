@@ -50,21 +50,45 @@ public class LoginController {
     @FXML
     protected void onLoginButtonClick() throws IOException {
 
+        LoginDAO loginDAO = new LoginDAO();
+
         String login = loginField.getText();
         String password = passwordField.getText();
 
-        boolean loginPasswordValidation = loginValidation(login, password);
+        boolean validation = false;
+        Login userLogado = null;
+
+        List<Login> logins = loginDAO.getAll();
+
+        for (Login loginList : logins){
+            if(loginList.getLogin().equals(login) && loginList.getSenha().equals(password)){
+                validation = true;
+                userLogado = loginList;
+                break;
+            }
+        }
 
         try {
-            if (loginPasswordValidation){
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agendamento.fxml"));
-                Parent cadastroRoot = fxmlLoader.load();
-                Scene cadastroScene = new Scene(cadastroRoot);
+            if (validation){
+                if(userLogado.getTipo().equals("Medico")){
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agenda.fxml"));
+                    Parent cadastroRoot = fxmlLoader.load();
+                    Scene cadastroScene = new Scene(cadastroRoot);
 
-                Stage stage = (Stage) cadastroButton.getScene().getWindow();
-                stage.setScene(cadastroScene);
-                stage.setTitle("Agendamento");
-                stage.show();
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.setScene(cadastroScene);
+                    stage.setTitle("Agenda");
+                    stage.show();
+                }else{
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agendamento.fxml"));
+                    Parent cadastroRoot = fxmlLoader.load();
+                    Scene cadastroScene = new Scene(cadastroRoot);
+
+                    Stage stage = (Stage) cadastroButton.getScene().getWindow();
+                    stage.setScene(cadastroScene);
+                    stage.setTitle("Agendamento");
+                    stage.show();
+                }
             }else{
                 throw new LoginNotFoundException();
             }

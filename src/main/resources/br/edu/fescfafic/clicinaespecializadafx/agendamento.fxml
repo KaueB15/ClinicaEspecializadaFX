@@ -111,7 +111,7 @@
                   <Tooltip text="Sair" />
                </tooltip>
             </Button>
-            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />
                </tooltip>
