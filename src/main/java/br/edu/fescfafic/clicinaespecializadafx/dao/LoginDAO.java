@@ -26,26 +26,6 @@ public class LoginDAO {
         }
     }
 
-    public void validarLogin(String user, String password) {
-        List<Login> logins = getAll();
-        boolean isValid = false;
-
-        for (Login login : logins) {
-            if (login.getLogin().equals(user) && login.getSenha().equals(password)) {
-                isValid = true;
-                break;
-            }
-        }
-
-        if (isValid) {
-            System.out.println("Login realizado com sucesso!");
-
-        } else {
-            System.out.println("Login ou senha inválidos.");
-
-        }
-    }
-
     public List<Login> getAll() {
         getEmc().getEntityManager().getTransaction().begin();
         var query = getEmc().getEntityManager().createNamedQuery("listarLogins", Login.class);

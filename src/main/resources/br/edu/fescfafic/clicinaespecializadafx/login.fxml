@@ -31,24 +31,30 @@
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="382.0" layoutY="176.0" prefHeight="25.0" prefWidth="179.0" />
+      <TextField fx:id="loginField" layoutX="382.0" layoutY="176.0" prefHeight="25.0" prefWidth="179.0" />
       <Label layoutX="383.0" layoutY="208.0" text="Senha">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="441.0" layoutY="266.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
+      <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="298.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
          <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <PasswordField layoutX="382.0" layoutY="229.0" prefHeight="25.0" prefWidth="179.0" />
-      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="409.0" layoutY="327.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE">
+      <PasswordField fx:id="passwordField" layoutX="382.0" layoutY="229.0" prefHeight="25.0" prefWidth="179.0" />
+      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="403.0" layoutY="342.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE">
 
          <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
-         </font></Button>
-      <Label layoutX="467.0" layoutY="303.0" text="ou" />
+         </font>
+      </Button>
+            <Label fx:id="errorMessage" layoutX="406.0" layoutY="262.0" prefHeight="25.0" prefWidth="132.0"
+                   textFill="RED">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

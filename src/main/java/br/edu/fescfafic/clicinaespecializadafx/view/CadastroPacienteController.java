@@ -47,9 +47,9 @@ public class CadastroPacienteController {
         Parent cadastroRoot = fxmlLoader.load();
         Scene cadastroScene = new Scene(cadastroRoot);
 
-        Stage stage = (Stage) btnFinalizarCadastro.getScene().getWindow();
+        Stage stage = (Stage) buttonReturnCadastro.getScene().getWindow();
         stage.setScene(cadastroScene);
-        stage.setTitle("Cadastro Paciente");
+        stage.setTitle("Cadastro");
         stage.show();
     }
 
