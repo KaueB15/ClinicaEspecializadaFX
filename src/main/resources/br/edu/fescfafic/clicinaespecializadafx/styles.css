@@ -81,4 +81,7 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
-
+.stack-bg{
+    -fx-background-image: url("images/background.jpg");
+    -fx-background-size: cover;
+}

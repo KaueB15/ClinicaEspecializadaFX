@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,8 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Tooltip?>
-<StackPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.AgendamentoController">
+<StackPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('images/background.jpg');" styleClass="stack-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.AgendamentoController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles.css">
          <children>
@@ -110,12 +110,12 @@
             <Label layoutX="29.0" layoutY="365.0" prefHeight="17.0" prefWidth="369.0" textFill="RED" />
             <Button id="btnSair" fx:id="sair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
-                  <Tooltip text="Sair"/>
+                  <Tooltip text="Sair" />
                </tooltip>
             </Button>
             <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
-                  <Tooltip text="Meu Cadastro"/>
+                  <Tooltip text="Meu Cadastro" />
                </tooltip>
             </Button>
 
