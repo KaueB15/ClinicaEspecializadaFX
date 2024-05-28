@@ -11,6 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <StackPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('images/background.jpg');" styleClass="stack-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.CadastroMedicoController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css">
@@ -47,11 +48,11 @@
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="fieldPassword" layoutX="333.0" layoutY="272.0" prefHeight="25.0" prefWidth="249.0" promptText="Senha">
+      <PasswordField fx:id="fieldPassword" layoutX="333.0" layoutY="272.0" prefHeight="25.0" prefWidth="249.0" promptText="Senha">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
          </font>
-      </TextField>
+      </PasswordField>
       <TextField fx:id="fieldCRM" layoutX="335.0" layoutY="221.0" prefHeight="25.0" prefWidth="249.0" promptText="CRM">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
