@@ -19,7 +19,7 @@
 
 <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" styleClass="stack-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.AgendamentoController">
    <children>
-      <AnchorPane styleClass="anchor-pane" stylesheets="@styles.css">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@styles.css">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#109475" height="45.0" layoutY="98.0" stroke="#755f5f00" strokeType="INSIDE" width="600.0" />
             <ImageView id="btn-cadastro" disable="true" fitHeight="40.0" fitWidth="39.0" layoutX="486.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-button">
