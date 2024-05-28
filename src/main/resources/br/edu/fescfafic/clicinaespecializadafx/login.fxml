@@ -15,45 +15,46 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@styles.css">
          <children>
+            <Label fx:id="errorMessage" layoutX="406.0" layoutY="348.0" prefHeight="25.0" prefWidth="132.0" textFill="RED">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="16.0" />
+               </font>
+            </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="345.0" />
       <ImageView fitHeight="95.0" fitWidth="268.0" layoutX="39.0" layoutY="152.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="160.20343780517578" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="293.0" AnchorPane.topAnchor="152.0">
          <image>
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="110.0" fitWidth="107.0" layoutX="416.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="110.0" fitWidth="107.0" layoutX="416.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icons/hospital.png" />
          </image>
       </ImageView>
-      <Label layoutX="383.0" layoutY="154.0" text="User">
+      <Label layoutX="383.0" layoutY="143.0" text="User">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="loginField" layoutX="382.0" layoutY="176.0" prefHeight="25.0" prefWidth="179.0" />
-      <Label layoutX="383.0" layoutY="208.0" text="Senha">
+      <TextField fx:id="loginField" layoutX="382.0" layoutY="165.0" prefHeight="25.0" prefWidth="179.0" />
+      <Label layoutX="383.0" layoutY="197.0" text="Senha">
          <font>
             <Font name="Leelawadee UI Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="298.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
+      <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="253.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="65.0" text="Entrar" textAlignment="CENTER">
          <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <PasswordField fx:id="passwordField" layoutX="382.0" layoutY="229.0" prefHeight="25.0" prefWidth="179.0" />
-      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="403.0" layoutY="342.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE">
+      <PasswordField fx:id="passwordField" layoutX="382.0" layoutY="218.0" prefHeight="25.0" prefWidth="179.0" />
+      <Button id="cadastroButton" fx:id="cadastroButton" layoutX="403.0" layoutY="305.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="30.0" prefWidth="138.0" styleClass="btn-cadastro" stylesheets="@styles.css" text="Criar nova conta" textFill="WHITE">
 
          <font>
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-            <Label fx:id="errorMessage" layoutX="406.0" layoutY="262.0" prefHeight="25.0" prefWidth="132.0" textFill="RED">
-               <font>
-                  <Font name="Leelawadee UI Bold" size="16.0" />
-               </font>
-            </Label>
+            <Label layoutX="462.0" layoutY="285.0" text="ou" textAlignment="CENTER" />
          </children>
       </AnchorPane>
    </children>
