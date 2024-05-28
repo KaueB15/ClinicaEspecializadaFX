@@ -7,8 +7,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.CadastroController">
+<?import javafx.scene.layout.StackPane?>
+<StackPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.CadastroController">
    <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css">
+         <children>
       <ImageView fitHeight="325.0" fitWidth="162.0" layoutX="21.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/cadastro_paciente.png" />
@@ -34,3 +37,6 @@
       <Rectangle id="retangle2" fx:id="medicoButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="406.0" layoutX="197.0" layoutY="-1.0" onMouseClicked="#onMedicoButtonClick" stroke="#4a9bdd" strokeType="INSIDE" styleClass="btn-retangle" width="191.0" />
    </children>
 </AnchorPane>
+        </children>
+        </StackPane>
+

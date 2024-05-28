@@ -25,7 +25,7 @@ public class CadastroPacienteController {
     @FXML
     private TextField fieldLogin;
     @FXML
-    private TextField fieldPassword;
+    private PasswordField fieldPassword;
     @FXML
     private DatePicker fieldDate;
     @FXML
