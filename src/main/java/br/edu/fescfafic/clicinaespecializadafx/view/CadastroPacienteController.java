@@ -59,6 +59,7 @@ public class CadastroPacienteController {
 
         loginSenha.setLogin(login);
         loginSenha.setSenha(password);
+        loginSenha.setTipo("Paciente");
 
         return loginSenha;
     }

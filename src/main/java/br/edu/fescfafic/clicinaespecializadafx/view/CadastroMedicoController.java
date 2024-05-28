@@ -61,6 +61,7 @@ import java.time.LocalDate;
 
             loginSenha.setLogin(login);
             loginSenha.setSenha(password);
+            loginSenha.setTipo("Medico");
 
             return loginSenha;
         }

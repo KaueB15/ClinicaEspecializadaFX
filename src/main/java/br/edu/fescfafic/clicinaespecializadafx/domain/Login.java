@@ -19,6 +19,15 @@ public class Login {
     @Column(unique = true)
     private String login;
     private String senha;
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public int getId() {
         return id;

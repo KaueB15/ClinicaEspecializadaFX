@@ -21,7 +21,7 @@ public class Medico {
     @Column(unique = true)
     private int crm;
     private String nome, especialidade;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Login login;
     @Column(unique = true)
     private String cpf;
