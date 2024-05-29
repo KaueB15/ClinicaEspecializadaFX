@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,9 +31,9 @@ public class LoginController {
     private Label errorMessage;
 
 
-    protected boolean loginValidation(String login, String password){
+    protected Login loginValidation(String login, String password){
 
-        boolean validation = false;
+        Login loginReturn = null;
 
         LoginDAO loginDAO = new LoginDAO();
 
@@ -40,12 +41,13 @@ public class LoginController {
 
         for (Login loginList : logins){
             if(loginList.getLogin().equals(login) && loginList.getSenha().equals(password)){
-                validation = true;
+                loginReturn = loginList;
             }
         }
 
-        return validation;
+        return loginReturn;
     }
+
 
     @FXML
     protected void onLoginButtonClick() throws IOException {
