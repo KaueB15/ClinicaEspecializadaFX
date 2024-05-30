@@ -32,9 +32,10 @@ public class Agendamento {
     private LocalDateTime dataHoraInicio;
     @Column(unique = true)
     private LocalDateTime dataHoraFim;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     private Medico medico;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Paciente paciente;
 
     public int getId() {

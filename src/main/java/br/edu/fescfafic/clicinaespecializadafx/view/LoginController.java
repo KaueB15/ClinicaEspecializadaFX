@@ -1,7 +1,9 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
 
 import br.edu.fescfafic.clicinaespecializadafx.dao.LoginDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import br.edu.fescfafic.clicinaespecializadafx.exceptions.LoginNotFoundException;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -30,22 +32,23 @@ public class LoginController {
     @FXML
     private Label errorMessage;
 
+    protected Login pacienteLogado;
 
-    protected Login loginValidation(String login, String password){
+    protected Paciente findPacienteByLogin(Login login){
 
-        Login loginReturn = null;
+        Paciente pacienteLogado = null;
 
-        LoginDAO loginDAO = new LoginDAO();
+        PacienteDAO pacienteDAO = new PacienteDAO();
 
-        List<Login> logins = loginDAO.getAll();
+        List<Paciente> pacientes = pacienteDAO.listarPacientes();
 
-        for (Login loginList : logins){
-            if(loginList.getLogin().equals(login) && loginList.getSenha().equals(password)){
-                loginReturn = loginList;
+        for(Paciente paciente : pacientes){
+            if (paciente.getLogin().getId() == login.getId()){
+                pacienteLogado = paciente;
             }
         }
 
-        return loginReturn;
+        return pacienteLogado;
     }
 
 
@@ -85,6 +88,11 @@ public class LoginController {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agendamento.fxml"));
                     Parent cadastroRoot = fxmlLoader.load();
                     Scene cadastroScene = new Scene(cadastroRoot);
+
+                    AgendamentoController agendamentoController = fxmlLoader.getController();
+                    Paciente pacienteLogado = findPacienteByLogin(userLogado);
+                    agendamentoController.setPacienteLogado(pacienteLogado);
+                    agendamentoController.welcomeText.setText("Olá " + pacienteLogado.getNome());
 
                     Stage stage = (Stage) cadastroButton.getScene().getWindow();
                     stage.setScene(cadastroScene);

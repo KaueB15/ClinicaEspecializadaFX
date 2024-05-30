@@ -5,6 +5,7 @@ import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Agendamento;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import com.twilio.rest.api.v2010.account.incomingphonenumber.Local;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -48,11 +49,11 @@ public class AgendamentoController {
     private Button cadastro;
 
     @FXML
-    private Label welcomeText;
+    protected Label welcomeText;
     @FXML
     private TableColumn tableMedico;
 
-    LoginController loginController = new LoginController();
+    Paciente pacienteLogado;
 
     @FXML
     private TableView consultaTableView;
@@ -70,11 +71,16 @@ public class AgendamentoController {
         stage.show();
     }
 
-    protected Agendamento returnAgendamento(LocalDateTime dateHour, Medico medico){
+    protected void setPacienteLogado(Paciente paciente){
+        this.pacienteLogado = paciente;
+    }
+
+    protected Agendamento returnAgendamento(LocalDateTime dateHour, Medico medico, Paciente paciente){
             Agendamento agendamento = new Agendamento();
 
             agendamento.setDataHoraInicio(dateHour);
             agendamento.setMedico(medico);
+            agendamento.setPaciente(paciente);
 
 
             return agendamento;
@@ -154,18 +160,19 @@ public class AgendamentoController {
 
         AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
+
         String selectedEspecialidade = boxEspecialidade.getValue();
         String selectedNameMedico = boxMedicos.getValue();
         LocalDate selectedDate = dataConsulta.getValue();
         LocalTime selectedHour = boxHour.getValue();
+        Paciente selectedPaciente = pacienteLogado;
 
         Medico selectedMedico = returnMedico(selectedNameMedico);
         LocalDateTime selectedHourDate = LocalDateTime.of(selectedDate, selectedHour);
 
-        Agendamento agendamento = returnAgendamento(selectedHourDate, selectedMedico);
+        Agendamento agendamento = returnAgendamento(selectedHourDate, selectedMedico, selectedPaciente);
 
-        System.out.println(agendamento);
-        System.out.println(login);
+        agendamentoDAO.inserirAgendamento(agendamento);
 
     }
 

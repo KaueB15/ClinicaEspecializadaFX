@@ -15,10 +15,13 @@ public class AgendamentoDAO {
     }
 
     public void inserirAgendamento(Agendamento agendamento) {
-        getEmc().getEntityManager().getTransaction().begin();
-        getEmc().getEntityManager().persist(agendamento);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
+        try {
+            getEmc().getEntityManager().getTransaction().begin();
+            getEmc().getEntityManager().persist(agendamento);
+            getEmc().getEntityManager().getTransaction().commit();
+        }finally {
+            getEmc().getEntityManager().close();
+        }
     }
 
 
