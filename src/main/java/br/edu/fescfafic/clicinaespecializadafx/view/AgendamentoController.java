@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -52,6 +53,10 @@ public class AgendamentoController {
     protected Label welcomeText;
     @FXML
     private TableColumn tableMedico;
+    @FXML
+    private Label dataIndisponivel;
+    @FXML
+    private Label sucessoAgendamento;
 
     Paciente pacienteLogado;
 
@@ -158,6 +163,9 @@ public class AgendamentoController {
     @FXML
     private void onAgendamentoClickButton(ActionEvent event){
 
+        sucessoAgendamento.setText(" ");
+        dataIndisponivel.setText(" ");
+
         AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
 
@@ -171,8 +179,15 @@ public class AgendamentoController {
         LocalDateTime selectedHourDate = LocalDateTime.of(selectedDate, selectedHour);
 
         Agendamento agendamento = returnAgendamento(selectedHourDate, selectedMedico, selectedPaciente);
+        try {
+            agendamentoDAO.inserirAgendamento(agendamento);
 
-        agendamentoDAO.inserirAgendamento(agendamento);
+            sucessoAgendamento.setText("CONSULTA AGENDADA");
+        }catch (ConstraintViolationException e){
+            System.out.println("DATA INDISPONIVEL");
+            dataIndisponivel.setText("DATA INDISPONIVEL");
+        }
+
 
     }
 

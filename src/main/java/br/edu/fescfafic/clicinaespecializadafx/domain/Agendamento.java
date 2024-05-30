@@ -33,9 +33,9 @@ public class Agendamento {
     @Column(unique = true)
     private LocalDateTime dataHoraFim;
 
-    @OneToOne
+    @ManyToOne
     private Medico medico;
-    @OneToOne
+    @ManyToOne
     private Paciente paciente;
 
     public int getId() {
