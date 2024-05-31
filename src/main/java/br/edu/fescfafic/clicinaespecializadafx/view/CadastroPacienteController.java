@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -48,9 +49,9 @@ public class CadastroPacienteController {
         Scene cadastroScene = new Scene(cadastroRoot);
 
         Stage stage = (Stage) buttonReturnCadastro.getScene().getWindow();
-        stage.setScene(cadastroScene);
-        stage.setTitle("Cadastro");
-        stage.show();
+        Pane mainPane = (Pane) stage.getScene().getRoot();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(cadastroRoot);
     }
 
     @FXML
