@@ -105,6 +105,9 @@ import java.time.LocalDate;
         @FXML
         protected void onCadastrarMedico(ActionEvent event) throws IOException{
 
+            errorMessage.setText(" ");
+            cadastroMessage.setText(" ");
+
             MedicoDAO medicoDAO = new MedicoDAO();
             LoginDAO loginDAO = new LoginDAO();
 
@@ -151,6 +154,19 @@ import java.time.LocalDate;
             }catch (FieldNullException e){
                 errorMessage.setText("Campos Invalidos!!!");
                 System.err.println(e);
+                LoginDAO daoLogin = new LoginDAO();
+
+                if (insertsDataBase == 1){
+                    daoLogin.deletarLogin(medicoLogin);
+                }
+            }catch (NumberFormatException e){
+                errorMessage.setText("Campos Invalidos!!!");
+                System.err.println(e);
+                LoginDAO daoLogin = new LoginDAO();
+
+                if (insertsDataBase == 1){
+                    daoLogin.deletarLogin(medicoLogin);
+                }
             }
 
 
