@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -13,6 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -47,6 +47,17 @@
                </image>
             </ImageView>
             <DatePicker fx:id="dataConsulta" layoutX="29.0" layoutY="178.0" prefHeight="30.0" prefWidth="224.0" />
+            <Button id="btn-cancelar-consulta" layoutX="232.0" layoutY="353.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
+            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+               <tooltip>
+                  <Tooltip text="Meu Cadastro" />
+               </tooltip>
+            </Button>
+            <Button id="btnSair" fx:id="sair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+               <tooltip>
+                  <Tooltip text="Sair" />
+               </tooltip>
+            </Button>
             <Label layoutX="30.0" layoutY="160.0" text="ESCOLHA UMA DATA" textFill="#8a8686">
                <font>
                   <Font name="Leelawadee UI Bold" size="12.0" />
@@ -57,10 +68,9 @@
                   <Font name="Leelawadee UI Bold" size="21.0" />
                </font>
             </Label>
-            <ButtonBar layoutX="90.0" layoutY="308.0" prefHeight="40.0" prefWidth="200.0" />
             <ScrollPane layoutX="27.0" layoutY="241.0" prefHeight="98.0" prefWidth="547.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="545.0">
+                <VBox minHeight="0.0" minWidth="0.0" prefHeight="96.0" prefWidth="545.0">
                      <children>
                         <TableView editable="true" prefHeight="110.0" prefWidth="547.0">
                           <columns>
@@ -74,7 +84,7 @@
                            </columnResizePolicy>
                         </TableView>
                      </children>
-                  </AnchorPane>
+                  </VBox>
               </content>
             </ScrollPane>
             <Label layoutX="30.0" layoutY="222.0" text="MINHAS CONSULTAS" textFill="#8a8686">
@@ -82,17 +92,6 @@
                   <Font name="Leelawadee UI Bold" size="12.0" />
                </font>
             </Label>
-            <Button id="btn-cancelar-consulta" layoutX="232.0" layoutY="353.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
-            <Button id="btnSair" fx:id="sair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
-               <tooltip>
-                  <Tooltip text="Sair" />
-               </tooltip>
-            </Button>
-            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
-               <tooltip>
-                  <Tooltip text="Meu Cadastro" />
-               </tooltip>
-            </Button>
             <Text fill="#79807a" layoutX="360.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="“O bom médico trata as doenças, mas o grande médico trata o paciente.” William Osler" textAlignment="RIGHT" wrappingWidth="208.703125">
                <font>
                   <Font name="Leelawadee UI" size="12.0" />

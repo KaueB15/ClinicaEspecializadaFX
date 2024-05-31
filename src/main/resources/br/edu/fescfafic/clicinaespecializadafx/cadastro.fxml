@@ -23,18 +23,18 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="406.0" layoutX="388.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="212.0" />
-      <ImageView fitHeight="60.0" fitWidth="173.0" layoutX="408.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/logo_menor.png" />
-         </image>
-      </ImageView>
+      <Rectangle id="retangle1" fx:id="pacienteButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="406.0" layoutY="-1.0" onMouseClicked="#onPacienteButtonClick" stroke="#4a9bdd" strokeType="INSIDE" styleClass="btn-retangle" width="197.0" />
+      <Rectangle id="retangle2" fx:id="medicoButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="406.0" layoutX="197.0" layoutY="-1.0" onMouseClicked="#onMedicoButtonClick" stroke="#4a9bdd" strokeType="INSIDE" styleClass="btn-retangle" width="191.0" />
       <Button fx:id="voltarButton" layoutX="405.0" layoutY="264.0" mnemonicParsing="false" onAction="#onVoltarButtonClick" prefHeight="91.0" prefWidth="173.0" styleClass="btn-voltar" stylesheets="@styles.css" text="Voltar &lt;--">
          <font>
             <Font name="Leelawadee UI Bold" size="24.0" />
          </font>
       </Button>
-      <Rectangle id="retangle1" fx:id="pacienteButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="406.0" layoutY="-1.0" onMouseClicked="#onPacienteButtonClick" stroke="#4a9bdd" strokeType="INSIDE" styleClass="btn-retangle" width="197.0" />
-      <Rectangle id="retangle2" fx:id="medicoButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="406.0" layoutX="197.0" layoutY="-1.0" onMouseClicked="#onMedicoButtonClick" stroke="#4a9bdd" strokeType="INSIDE" styleClass="btn-retangle" width="191.0" />
+      <ImageView fitHeight="60.0" fitWidth="173.0" layoutX="408.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo_menor.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
         </children>

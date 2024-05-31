@@ -43,6 +43,16 @@
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </TextField>
+      <TextField fx:id="fieldEspecialidade" layoutX="22.0" layoutY="221.0" prefHeight="25.0" prefWidth="295.0" promptText="Especialidade">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="fieldCRM" layoutX="335.0" layoutY="221.0" prefHeight="25.0" prefWidth="249.0" promptText="CRM">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font>
+      </TextField>
       <TextField fx:id="fieldLogin" layoutX="22.0" layoutY="272.0" prefHeight="25.0" prefWidth="295.0" promptText="Nome de Usuário">
          <font>
             <Font name="Leelawadee UI" size="12.0" />
@@ -53,11 +63,6 @@
             <Font name="Leelawadee UI" size="12.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="fieldCRM" layoutX="335.0" layoutY="221.0" prefHeight="25.0" prefWidth="249.0" promptText="CRM">
-         <font>
-            <Font name="Leelawadee UI" size="12.0" />
-         </font>
-      </TextField>
       <Button fx:id="btnFinalizarCadastro" layoutX="333.0" layoutY="320.0" mnemonicParsing="false" onAction="#onCadastrarMedico" prefHeight="56.0" prefWidth="249.0" styleClass="btn-finalizar-cadastro" text="Cadastre-se">
          <font>
             <Font name="Leelawadee UI Bold" size="20.0" />
@@ -73,11 +78,6 @@
             <Font name="Leelawadee UI Bold" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="fieldEspecialidade" layoutX="22.0" layoutY="221.0" prefHeight="25.0" prefWidth="295.0" promptText="Especialidade">
-         <font>
-            <Font name="Leelawadee UI" size="12.0" />
-         </font>
-      </TextField>
       <Label fx:id="cadastroMessage" layoutX="356.0" layoutY="127.0" prefHeight="25.0" prefWidth="208.0" textFill="#15ff00">
          <font>
             <Font name="Leelawadee UI Bold" size="16.0" />
