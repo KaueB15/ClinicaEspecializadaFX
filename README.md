@@ -1,3 +1,4 @@
+[![Logo-Faculdade.png](https://i.postimg.cc/VkHqxJR7/Logo-Faculdade.png)](https://postimg.cc/nXB97cN7)
 # Sistema de Agendamento de Consultas
 
 Bem-vindo ao Sistema de Agendamento de Consultas! Este sistema foi desenvolvido como parte do curso de Ciências da Computação da Faculdade Católica da Paraíba, para a disciplina de Engenharia de Software. O objetivo é auxiliar clínicas e consultórios médicos a gerenciar seus agendamentos de forma eficiente e organizada.
