@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.extern.java.Log;
 
@@ -78,12 +79,11 @@ public class LoginController {
                 if(userLogado.getTipo().equals("Medico")){
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agenda.fxml"));
                     Parent cadastroRoot = fxmlLoader.load();
-                    Scene cadastroScene = new Scene(cadastroRoot);
-
                     Stage stage = (Stage) loginButton.getScene().getWindow();
-                    stage.setScene(cadastroScene);
-                    stage.setTitle("Agenda");
-                    stage.show();
+                    Pane mainPane = (Pane) stage.getScene().getRoot();
+                    mainPane.getChildren().clear();
+                    mainPane.getChildren().add(cadastroRoot);
+
                 }else{
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agendamento.fxml"));
                     Parent cadastroRoot = fxmlLoader.load();
@@ -95,9 +95,9 @@ public class LoginController {
                     agendamentoController.welcomeText.setText("Olá " + pacienteLogado.getNome());
 
                     Stage stage = (Stage) cadastroButton.getScene().getWindow();
-                    stage.setScene(cadastroScene);
-                    stage.setTitle("Agendamento");
-                    stage.show();
+                    Pane mainPane = (Pane) stage.getScene().getRoot();
+                    mainPane.getChildren().clear();
+                    mainPane.getChildren().add(cadastroRoot);
                 }
             }else{
                 throw new LoginNotFoundException();
@@ -113,11 +113,9 @@ public class LoginController {
     protected void onCadastroButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/cadastro.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
-        Scene cadastroScene = new Scene(cadastroRoot);
-
         Stage stage = (Stage) cadastroButton.getScene().getWindow();
-        stage.setScene(cadastroScene);
-        stage.setTitle("Cadastro");
-        stage.show();
+        Pane mainPane = (Pane) stage.getScene().getRoot();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(cadastroRoot);
     }
 }

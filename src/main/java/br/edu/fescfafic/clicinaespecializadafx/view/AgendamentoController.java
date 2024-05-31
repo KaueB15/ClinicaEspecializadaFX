@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -77,12 +78,10 @@ public class AgendamentoController {
     private void onSairButtonClick(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/login.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
-        Scene cadastroScene = new Scene(cadastroRoot);
-
         Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.setScene(cadastroScene);
-        stage.setTitle("Cadastro");
-        stage.show();
+        Pane mainPane = (Pane) stage.getScene().getRoot();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(cadastroRoot);
     }
 
     protected void setPacienteLogado(Paciente paciente){

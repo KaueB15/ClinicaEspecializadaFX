@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -47,12 +48,10 @@ import java.time.LocalDate;
         protected void onVoltarButtonClick(ActionEvent event) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/cadastro.fxml"));
             Parent cadastroRoot = fxmlLoader.load();
-            Scene cadastroScene = new Scene(cadastroRoot);
-
             Stage stage = (Stage) btnFinalizarCadastro.getScene().getWindow();
-            stage.setScene(cadastroScene);
-            stage.setTitle("Cadastro");
-            stage.show();
+            Pane mainPane = (Pane) stage.getScene().getRoot();
+            mainPane.getChildren().clear();
+            mainPane.getChildren().add(cadastroRoot);
         }
 
         @FXML
