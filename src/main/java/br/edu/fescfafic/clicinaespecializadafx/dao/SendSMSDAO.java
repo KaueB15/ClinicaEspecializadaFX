@@ -7,10 +7,10 @@ import com.twilio.type.PhoneNumber;
 
 public class SendSMSDAO {
     private SendSMS sms = new SendSMS();
-    public void sendSMS(String numero){
+    public void sendSMS(String mensagem){
         Twilio.init(sms.ACCOUNT_SID, sms.AUTH_TOKEN);
         Message message = Message
-                .creator(new PhoneNumber(numero), new PhoneNumber("+12513125765"),"Chegou a mensagem")
+                .creator(new PhoneNumber("+5511987069733"), new PhoneNumber("+12513125765"), mensagem)
                 .create();
 
         System.out.println(message.getSid());

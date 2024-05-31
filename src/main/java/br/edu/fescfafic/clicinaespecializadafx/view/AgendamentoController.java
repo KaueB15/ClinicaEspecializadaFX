@@ -2,6 +2,7 @@ package br.edu.fescfafic.clicinaespecializadafx.view;
 
 import br.edu.fescfafic.clicinaespecializadafx.dao.AgendamentoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.SendSMSDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Agendamento;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
@@ -174,6 +175,7 @@ public class AgendamentoController {
         sucessoAgendamento.setText(" ");
         dataIndisponivel.setText(" ");
 
+        SendSMSDAO sendSMSDAO = new SendSMSDAO();
         AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
 
@@ -191,6 +193,11 @@ public class AgendamentoController {
             agendamentoDAO.inserirAgendamento(agendamento);
 
             sucessoAgendamento.setText("CONSULTA AGENDADA");
+
+            String mensagemFormatada = "Consulta Agendada\n" + "Paciente - " + pacienteLogado.getNome() + "\nMedico - "
+                    + selectedMedico.getNome() + "\nData - " + selectedDate + "\nHora - " + selectedHour;
+
+            sendSMSDAO.sendSMS(mensagemFormatada);
         }catch (ConstraintViolationException e){
             System.out.println("DATA INDISPONIVEL");
             dataIndisponivel.setText("DATA INDISPONIVEL");
