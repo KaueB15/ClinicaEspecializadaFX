@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -52,7 +53,18 @@ public class AgendamentoController {
     @FXML
     protected Label welcomeText;
     @FXML
-    private TableColumn tableMedico;
+    private TableView tableAgendamento;
+    @FXML
+    private TableColumn<Agendamento, String> colunaMedico;
+
+    @FXML
+    private TableColumn<Agendamento, String> colunaEspecialidade;
+
+    @FXML
+    private TableColumn<Agendamento, String> colunaData;
+
+    @FXML
+    private TableColumn<Agendamento, String> colunaHora;
     @FXML
     private Label dataIndisponivel;
     @FXML
@@ -60,9 +72,6 @@ public class AgendamentoController {
 
     Paciente pacienteLogado;
 
-    @FXML
-    private TableView consultaTableView;
-//    Talvez seja preciso criar uma classe consulta.
 
     @FXML
     private void onSairButtonClick(ActionEvent event) throws IOException{
@@ -188,9 +197,26 @@ public class AgendamentoController {
             dataIndisponivel.setText("DATA INDISPONIVEL");
         }
 
-
     }
+    AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
+    @FXML
+    public void initialize() {
+
+        colunaMedico.setCellValueFactory(new PropertyValueFactory<>("medicoNome"));
+        colunaEspecialidade.setCellValueFactory(new PropertyValueFactory<>("medicoEspecialidade"));
+        colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+
+        carregarDadosNaTabela();
+
+}
+
+private void carregarDadosNaTabela() {
+    List<Agendamento> agendamentos = agendamentoDAO.listarAgendamentos();
+    ObservableList<Agendamento> agendamentosObservableList = FXCollections.observableArrayList(agendamentos);
+    tableAgendamento.setItems(agendamentosObservableList);
+}
 }
 
 
