@@ -93,6 +93,7 @@ public class LoginController {
                     Paciente pacienteLogado = findPacienteByLogin(userLogado);
                     agendamentoController.setPacienteLogado(pacienteLogado);
                     agendamentoController.welcomeText.setText("Olá " + pacienteLogado.getNome());
+                    agendamentoController.carregarDadosNaTabela();
 
                     Stage stage = (Stage) cadastroButton.getScene().getWindow();
                     Pane mainPane = (Pane) stage.getScene().getRoot();

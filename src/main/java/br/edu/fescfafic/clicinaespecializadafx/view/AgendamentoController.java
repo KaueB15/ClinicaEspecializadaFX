@@ -213,7 +213,7 @@ public class AgendamentoController {
     protected void onCancelarButtonClick(ActionEvent event){
         AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
-        System.out.println(tableAgendamento.getSelectionModel().getSelectedItem());
+        var agendamento = tableAgendamento.getSelectionModel().getSelectedItem();
 
 
     }
@@ -230,13 +230,17 @@ public class AgendamentoController {
 
 }
 
-    private void carregarDadosNaTabela() {
-        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+    protected void carregarDadosNaTabela() {
         tableAgendamento.getItems().clear();
-        List<Agendamento> agendamentos = agendamentoDAO.listarAgendamentos();
-        ObservableList<Agendamento> agendamentosObservableList = FXCollections.observableArrayList(agendamentos);
-        tableAgendamento.setItems(agendamentosObservableList);
-
+        Paciente paciente = pacienteLogado;
+        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+        List<Agendamento> agendamentosGeral = agendamentoDAO.listarAgendamentos();
+        ArrayList<Agendamento> agendamentosPaciente;
+        for(Agendamento agendamento : agendamentosGeral){
+            if (agendamento.getPaciente().equals(paciente)){
+                tableAgendamento.getItems().add(agendamento);
+            }
+        }
     }
 }
 
