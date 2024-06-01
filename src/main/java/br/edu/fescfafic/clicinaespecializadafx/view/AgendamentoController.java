@@ -71,6 +71,8 @@ public class AgendamentoController {
     private Label dataIndisponivel;
     @FXML
     private Label sucessoAgendamento;
+    @FXML
+    private Button cancelButton;
 
     Paciente pacienteLogado;
 
@@ -194,6 +196,8 @@ public class AgendamentoController {
 
             sucessoAgendamento.setText("CONSULTA AGENDADA");
 
+            carregarDadosNaTabela();
+
             String mensagemFormatada = "Consulta Agendada\n" + "Paciente - " + pacienteLogado.getNome() + "\nMedico - "
                     + selectedMedico.getNome() + "\nData - " + selectedDate + "\nHora - " + selectedHour;
 
@@ -204,7 +208,15 @@ public class AgendamentoController {
         }
 
     }
-    AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+
+    @FXML
+    protected void onCancelarButtonClick(ActionEvent event){
+        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+
+        System.out.println(tableAgendamento.getSelectionModel().getSelectedItem());
+
+
+    }
 
     @FXML
     public void initialize() {
@@ -218,11 +230,14 @@ public class AgendamentoController {
 
 }
 
-private void carregarDadosNaTabela() {
-    List<Agendamento> agendamentos = agendamentoDAO.listarAgendamentos();
-    ObservableList<Agendamento> agendamentosObservableList = FXCollections.observableArrayList(agendamentos);
-    tableAgendamento.setItems(agendamentosObservableList);
-}
+    private void carregarDadosNaTabela() {
+        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+        tableAgendamento.getItems().clear();
+        List<Agendamento> agendamentos = agendamentoDAO.listarAgendamentos();
+        ObservableList<Agendamento> agendamentosObservableList = FXCollections.observableArrayList(agendamentos);
+        tableAgendamento.setItems(agendamentosObservableList);
+
+    }
 }
 
 
