@@ -55,7 +55,7 @@ public class AgendamentoController {
     @FXML
     protected Label welcomeText;
     @FXML
-    private TableView tableAgendamento;
+    private TableView <Agendamento> tableAgendamento;
     @FXML
     private TableColumn<Agendamento, String> colunaMedico;
 
@@ -73,6 +73,52 @@ public class AgendamentoController {
     private Label sucessoAgendamento;
     @FXML
     private Button cancelButton;
+
+    @FXML
+    public void initialize() {
+
+        colunaMedico.setCellValueFactory(new PropertyValueFactory<>("medicoNome"));
+        colunaEspecialidade.setCellValueFactory(new PropertyValueFactory<>("medicoEspecialidade"));
+        colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+
+        carregarDadosNaTabela();
+
+        // Inicialmente, o botão está invisível
+        cancelButton.setVisible(false);
+
+        // Adiciona listener para mudar a visibilidade do botão
+        tableAgendamento.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            cancelButton.setVisible(newSelection != null);
+        });
+
+        // Adiciona um listener para o botão "Cancelar Consulta"
+        cancelButton.setOnAction(event -> onCancelarConsulta());
+
+    }
+
+    @FXML
+    private void onCancelarConsulta() {
+        Agendamento selectedAgendamento = tableAgendamento.getSelectionModel().getSelectedItem();
+        if (selectedAgendamento != null) {
+            // Remove a consulta selecionada
+            tableAgendamento.getItems().remove(selectedAgendamento);
+
+            // Mostra uma mensagem de confirmação
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Consulta Cancelada");
+            alert.setHeaderText(null);
+            alert.setContentText("Consulta cancelada com sucesso!");
+            alert.showAndWait();
+        } else {
+            // Mostra uma mensagem de erro se nenhuma consulta estiver selecionada
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
+            alert.setContentText("Nenhuma consulta selecionada!");
+            alert.showAndWait();
+        }
+    }
 
     Paciente pacienteLogado;
 
@@ -218,17 +264,6 @@ public class AgendamentoController {
 
     }
 
-    @FXML
-    public void initialize() {
-
-        colunaMedico.setCellValueFactory(new PropertyValueFactory<>("medicoNome"));
-        colunaEspecialidade.setCellValueFactory(new PropertyValueFactory<>("medicoEspecialidade"));
-        colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
-        colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-
-        carregarDadosNaTabela();
-
-}
 
     protected void carregarDadosNaTabela() {
         tableAgendamento.getItems().clear();
