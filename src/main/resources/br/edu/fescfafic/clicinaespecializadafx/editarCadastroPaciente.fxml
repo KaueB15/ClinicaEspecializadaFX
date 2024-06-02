@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="400.0" prefWidth="600.0" styleClass="stack-bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.fescfafic.clicinaespecializadafx.view.EditarCadastroPacienteController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@styles.css">
+         <children>
+            <Label fx:id="labelCPF" layoutX="350.0" layoutY="185.0" text="CPF" visible="true">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="labelPassword" layoutX="348.0" layoutY="237.0" text="Senha" visible="true">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="labelDate" layoutX="350.0" layoutY="288.0" text="Data de Nascimento" visible="true">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="labelName" layoutX="37.0" layoutY="184.0" text="Nome Completo" visible="true">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="labelLogin" layoutX="36.0" layoutY="236.0" text="Nome de Usuário" visible="true">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="labelPhone" layoutX="35.0" layoutY="287.0" text="Telefone" visible="true">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font></Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#109475" height="47.0" layoutY="104.0" stroke="#755f5f00" strokeType="INSIDE" width="600.0" />
+            <TextField fx:id="fieldName" layoutX="22.0" layoutY="179.0" prefHeight="25.0" prefWidth="234.0" promptText="Nome Completo" visible="false" />
+            <TextField fx:id="fieldCPF" layoutX="391.0" layoutY="179.0" prefHeight="25.0" prefWidth="142.0" promptText="CPF" visible="false" />
+            <TextField fx:id="fieldLogin" layoutX="21.0" layoutY="231.0" prefHeight="25.0" prefWidth="234.0" promptText="Nome de Usuário" visible="false" />
+            <PasswordField fx:id="fieldPassword" layoutX="391.0" layoutY="231.0" prefHeight="25.0" prefWidth="142.0" promptText="Senha" visible="false" />
+            <TextField fx:id="fieldPhone" layoutX="20.0" layoutY="282.0" prefHeight="25.0" prefWidth="234.0" promptText="Telefone" visible="false" />
+            <DatePicker fx:id="fieldDate" layoutX="391.0" layoutY="282.0" prefHeight="25.0" prefWidth="142.0" promptText="Data de Nascimento" visible="false" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="107.0" layoutY="-2.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+            <Button layoutX="268.0" layoutY="179.0" mnemonicParsing="false" onAction="#onEditName" styleClass="btn-edit" stylesheets="@styles.css" text="Editar" />
+            <Button layoutX="537.0" layoutY="179.0" mnemonicParsing="false" onAction="#onEditCPF" styleClass="btn-edit" text="Editar" />
+            <Button layoutX="268.0" layoutY="232.0" mnemonicParsing="false" onAction="#onEditLogin" styleClass="btn-edit" text="Editar" />
+            <Button layoutX="537.0" layoutY="231.0" mnemonicParsing="false" onAction="#onEditPassword" styleClass="btn-edit" text="Editar" />
+            <Button layoutX="268.0" layoutY="282.0" mnemonicParsing="false" onAction="#onEditPhone" styleClass="btn-edit" text="Editar" />
+            <Button layoutX="537.0" layoutY="282.0" mnemonicParsing="false" onAction="#onEditDate" styleClass="btn-edit" text="Editar" />
+            <Label layoutX="22.0" layoutY="326.0" text="Sexo" textFill="#0000008b" />
+            <RadioButton layoutX="133.0" layoutY="349.0" mnemonicParsing="false" prefWidth="114.0" text="Feminino" />
+            <RadioButton layoutX="22.0" layoutY="349.0" mnemonicParsing="false" text="Masculino" />
+            <Button fx:id="btnSalvar" layoutX="419.0" layoutY="333.0" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefHeight="56.0" prefWidth="166.0" styleClass="btn-finalizar-cadastro" text="Salvar">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnVoltar" layoutX="317.0" layoutY="344.0" mnemonicParsing="false" onAction="#onVoltarButtonClick" prefHeight="35.0" prefWidth="78.0" styleClass="btn-voltar-paciente" text="Voltar" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="13.0" />
+               </font></Button>
+            <Label fx:id="errorMessage" layoutX="20.0" layoutY="367.0" prefHeight="25.0" prefWidth="182.0" textFill="RED" />
+            <Label fx:id="cadastroMessage" layoutX="20.0" layoutY="365.0" prefHeight="25.0" prefWidth="203.0" textFill="#0fff00" />
+            <Label fx:id="welcomeText" layoutX="26.0" layoutY="26.0" prefHeight="66.0" prefWidth="312.0" text="Olá, [Fulano]!" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="110.0" prefHeight="36.0" prefWidth="353.0" text="Meu Cadastro" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="21.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="375.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo_menor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
