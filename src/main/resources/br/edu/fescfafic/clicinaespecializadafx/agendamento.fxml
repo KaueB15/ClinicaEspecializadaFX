@@ -57,7 +57,7 @@
                </font>
             </Button>
             <Button id="btn-cancelar-consulta" fx:id="cancelButton" layoutX="437.0" layoutY="361.0" mnemonicParsing="false" onAction="#onCancelarButtonClick" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
-            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />
                </tooltip>

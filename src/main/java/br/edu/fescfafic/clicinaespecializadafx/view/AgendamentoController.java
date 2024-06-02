@@ -133,6 +133,17 @@ public class AgendamentoController {
         mainPane.getChildren().add(cadastroRoot);
     }
 
+    @FXML
+    private void onCadastroButtonClick(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/editarCadastroPaciente.fxml"));
+        Parent cadastroRoot = fxmlLoader.load();
+        Stage stage = (Stage) cadastro.getScene().getWindow();
+        Pane mainPane = (Pane) stage.getScene().getRoot();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(cadastroRoot);
+    }
+
+
     protected void setPacienteLogado(Paciente paciente){
         this.pacienteLogado = paciente;
     }
