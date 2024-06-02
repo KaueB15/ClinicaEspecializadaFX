@@ -1,24 +1,26 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.fxml.FXMLLoader;
 
-import java.io.IOException;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Agenda;
+import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class AgendaController {
 
     @FXML
-    private DatePicker dataConsulta;
+    private DatePicker datePicker;
 
     @FXML
-    private Button sair;
+    private TableView<Agenda> tableView;
 
     @FXML
-    private Button cadastro;
-
+    private TableColumn<Agenda, String> tablePaciente;
     @FXML
-    private Label welcomeText;
-
+    private TableColumn<Agenda, String> tableSexo;
+    @FXML
+    private TableColumn<Agenda, Integer> tableIdade;
+    @FXML
+    private TableColumn<Agenda, String> tableHora;
 
 }
