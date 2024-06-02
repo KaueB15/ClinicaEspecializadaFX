@@ -35,6 +35,9 @@ public class AgendaController {
     private Button btnVoltar;
 
     @FXML
+    private Button sair;
+
+    @FXML
     private Button cadastro;
 
     @FXML
@@ -57,4 +60,13 @@ public class AgendaController {
         mainPane.getChildren().add(cadastroRoot);
     }
 
+    @FXML
+    private void onSairButtonClick(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/login.fxml"));
+        Parent cadastroRoot = fxmlLoader.load();
+        Stage stage = (Stage) sair.getScene().getWindow();
+        Pane mainPane = (Pane) stage.getScene().getRoot();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(cadastroRoot);
+}
 }
