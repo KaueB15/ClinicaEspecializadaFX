@@ -1,4 +1,5 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,7 +55,7 @@ public class EditarCadastroMedicoController {
     private Button btnVoltar;
 
     @FXML
-    private Label welcomeText;
+    protected Label welcomeText;
 
     @FXML
     private Button editNameButton;

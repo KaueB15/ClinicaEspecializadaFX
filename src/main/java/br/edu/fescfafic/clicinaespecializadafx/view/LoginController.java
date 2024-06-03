@@ -118,7 +118,7 @@ public class LoginController {
                     AgendamentoController agendamentoController = fxmlLoader.getController();
                     Paciente pacienteLogado = findPacienteByLogin(userLogado);
                     agendamentoController.setPacienteLogado(pacienteLogado);
-                    agendamentoController.welcomeText.setText("Olá " + pacienteLogado.getNome());
+                    agendamentoController.welcomeText.setText("Olá, " + pacienteLogado.getNome());
                     agendamentoController.carregarDadosNaTabela();
 
                     Stage stage = (Stage) loginButton.getScene().getWindow();

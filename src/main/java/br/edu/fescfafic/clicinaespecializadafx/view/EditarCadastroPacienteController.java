@@ -1,5 +1,7 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
 
+import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,10 +61,6 @@ public class EditarCadastroPacienteController {
 
     @FXML
     private Label cadastroMessage;
-
-    @FXML
-    private Label welcomeText;
-
     @FXML
     private Button editNameButton;
 
@@ -80,6 +78,15 @@ public class EditarCadastroPacienteController {
 
     @FXML
     private Button editDateButton;
+
+    @FXML
+    protected Label welcomeText;
+
+    protected Paciente pacienteLogado;
+
+    public void setPacienteLogado(Paciente pacienteLogado) {
+        this.pacienteLogado = pacienteLogado;
+    }
 
     @FXML
     void onEditName() {
@@ -126,15 +133,36 @@ public class EditarCadastroPacienteController {
 
     @FXML
     private void onSalvarButtonClick() {
-        System.out.println("Salvar Alterações no Banco de Dados");
-//        Lógica para salvar as alterações
 
+        PacienteDAO pacienteDAO = new PacienteDAO();
+
+        String nameEdit = fieldName.getText();
+        System.out.println(nameEdit);
+
+        pacienteLogado.setNome(nameEdit);
+
+        pacienteDAO.atualizarPaciente(pacienteLogado);
+
+    }
+
+    private Paciente newPaciente(String nome){
+        Paciente paciente = new Paciente();
+
+        paciente.setNome(nome);
+
+        return paciente;
     }
 
     @FXML
     private void onVoltarButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agendamento.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
+
+        AgendamentoController agendamentoController = fxmlLoader.getController();
+        agendamentoController.welcomeText.setText("Olá, " + pacienteLogado.getNome());
+        agendamentoController.setPacienteLogado(pacienteLogado);
+        agendamentoController.carregarDadosNaTabela();
+
         Stage stage = (Stage) btnVoltar.getScene().getWindow();
         Pane mainPane = (Pane) stage.getScene().getRoot();
         mainPane.getChildren().clear();

@@ -29,22 +29,30 @@ public class Agenda {
     private String sexo;
     private int idade;
 
-    public String getNomePacienteNome() {
+    public String getPacienteNome() {
         return paciente != null ? paciente.getNome() : "Desconhecido";
     }
 
-    public String getPacienteSexo() {
+    public String getSexoPaciente() {
         return paciente != null ? paciente.getSexo() : "Desconhecido";
     }
-
     public String getData() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return dataConsulta != null ? dataConsulta.toLocalDate().format(formatter) : "";
     }
 
+
+    public String getHoraPaciente() {
+        return getHora();
+    }
+
     public String getHora() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return dataConsulta != null ? dataConsulta.toLocalTime().format(formatter) : "";
+    }
+
+    public int getIdadePaciente() {
+        return getIdade();
     }
 
     @Transient
@@ -56,4 +64,5 @@ public class Agenda {
             return 0;
         }
     }
+
 }

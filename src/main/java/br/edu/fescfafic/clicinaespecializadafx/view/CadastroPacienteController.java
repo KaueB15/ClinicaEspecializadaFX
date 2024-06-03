@@ -42,6 +42,7 @@ public class CadastroPacienteController {
     @FXML
     private Label cadastroMessage;
 
+
     @FXML
     protected void onVoltarButtonClick(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/cadastro.fxml"));

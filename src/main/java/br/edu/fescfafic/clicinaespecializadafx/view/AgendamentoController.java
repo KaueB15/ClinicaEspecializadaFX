@@ -5,15 +5,10 @@ import br.edu.fescfafic.clicinaespecializadafx.dao.AgendamentoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.SendSMSDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.*;
-import com.twilio.rest.api.v2010.account.incomingphonenumber.Local;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,7 +20,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AgendamentoController {
@@ -137,6 +131,12 @@ public class AgendamentoController {
     private void onCadastroButtonClick(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/editarCadastroPaciente.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
+
+        EditarCadastroPacienteController editarCadastroPacienteController = fxmlLoader.getController();
+        Paciente paciente = pacienteLogado;
+        editarCadastroPacienteController.setPacienteLogado(paciente);
+        editarCadastroPacienteController.welcomeText.setText("Olá, " + paciente.getNome());
+
         Stage stage = (Stage) cadastro.getScene().getWindow();
         Pane mainPane = (Pane) stage.getScene().getRoot();
         mainPane.getChildren().clear();
