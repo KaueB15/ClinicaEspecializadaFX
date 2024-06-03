@@ -10,16 +10,22 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
+@Entity
+@Data
+@NamedQueries({
+        @NamedQuery(name = "listarTodasAgendas", query = "select dh from Agenda dh"),
+})
 public class Agenda {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private LocalDateTime data;
+    private LocalDateTime dataConsulta;
     private LocalTime hora;
     private LocalDate dataNascimento;
+    @ManyToOne
     private Paciente paciente;
+    @ManyToOne
+    private Medico medico;
     private String sexo;
     private int idade;
 
@@ -33,12 +39,12 @@ public class Agenda {
 
     public String getData() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return data != null ? data.toLocalDate().format(formatter) : "";
+        return dataConsulta != null ? dataConsulta.toLocalDate().format(formatter) : "";
     }
 
     public String getHora() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return data != null ? data.toLocalTime().format(formatter) : "";
+        return dataConsulta != null ? dataConsulta.toLocalTime().format(formatter) : "";
     }
 
     @Transient

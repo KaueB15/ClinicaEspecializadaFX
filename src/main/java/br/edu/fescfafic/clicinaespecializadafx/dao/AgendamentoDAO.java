@@ -1,6 +1,7 @@
 package br.edu.fescfafic.clicinaespecializadafx.dao;
 
 import br.edu.fescfafic.clicinaespecializadafx.domain.Agendamento;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.persistence.EntityManagerConnection;
 import jakarta.persistence.TypedQuery;
 
@@ -81,15 +82,20 @@ public class AgendamentoDAO {
             return null;
         }
     }
-
     public void removerAgendamento(Agendamento agendamento) {
-        getEmc().getEntityManager().getTransaction().begin();
-        List<Agendamento> agendados = listarAgendamentos();
-        agendados.remove(agendamento);
-        getEmc().getEntityManager().getTransaction().commit();
-        getEmc().getEntityManager().close();
-        System.out.println("Agendamento removido com sucesso!");
-    }
+            var em = getEmc().getEntityManager();
+            getEmc().getEntityManager().getTransaction().begin();
+            Agendamento remover = em.find(Agendamento.class, agendamento.getId());
+            if (remover != null) {
+                em.remove(remover);
+                System.out.println("Agendamento removido com sucesso!");
+            } else {
+                System.out.println("Agendamento não encontrado!");
+            }
+            getEmc().getEntityManager().getTransaction().commit();
+            getEmc().getEntityManager().close();
+
+        }
 
     public void atualizarAgendamento(Agendamento agendamento) {
         getEmc().getEntityManager().getTransaction().begin();

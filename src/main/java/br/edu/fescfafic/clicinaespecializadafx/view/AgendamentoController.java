@@ -1,12 +1,10 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
 
+import br.edu.fescfafic.clicinaespecializadafx.dao.AgendaDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.AgendamentoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.SendSMSDAO;
-import br.edu.fescfafic.clicinaespecializadafx.domain.Agendamento;
-import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
-import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
-import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
+import br.edu.fescfafic.clicinaespecializadafx.domain.*;
 import com.twilio.rest.api.v2010.account.incomingphonenumber.Local;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -73,6 +71,7 @@ public class AgendamentoController {
     private Label sucessoAgendamento;
     @FXML
     private Button cancelButton;
+    Paciente pacienteLogado;
 
     @FXML
     public void initialize() {
@@ -82,7 +81,7 @@ public class AgendamentoController {
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colunaHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
 
-        carregarDadosNaTabela();
+//        carregarDadosNaTabela();
 
         // Inicialmente, o botão está invisível
         cancelButton.setVisible(false);
@@ -93,16 +92,17 @@ public class AgendamentoController {
         });
 
         // Adiciona um listener para o botão "Cancelar Consulta"
-        cancelButton.setOnAction(event -> onCancelarConsulta());
-
+        cancelButton.setOnAction(event -> onCancelarConsultaButtonClick());
     }
 
     @FXML
-    private void onCancelarConsulta() {
+    private void onCancelarConsultaButtonClick() {
+        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
         Agendamento selectedAgendamento = tableAgendamento.getSelectionModel().getSelectedItem();
         if (selectedAgendamento != null) {
             // Remove a consulta selecionada
             tableAgendamento.getItems().remove(selectedAgendamento);
+            agendamentoDAO.removerAgendamento(selectedAgendamento);
 
             // Mostra uma mensagem de confirmação
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -120,7 +120,7 @@ public class AgendamentoController {
         }
     }
 
-    Paciente pacienteLogado;
+
 
 
     @FXML
@@ -157,6 +157,21 @@ public class AgendamentoController {
 
 
             return agendamento;
+    }
+
+    protected Agenda returnAgenda(LocalDateTime dataConsulta, LocalTime horaConsulta, Paciente paciente, String sexo,
+                                  LocalDate dataNascimento, int idade, Medico medico){
+        Agenda agenda = new Agenda();
+
+        agenda.setDataConsulta(dataConsulta);
+        agenda.setHora(horaConsulta);
+        agenda.setPaciente(paciente);
+        agenda.setSexo(sexo);
+        agenda.setDataNascimento(dataNascimento);
+        agenda.setIdade(idade);
+        agenda.setMedico(medico);
+
+        return agenda;
     }
 
     protected Medico returnMedico(String nome) {
@@ -234,11 +249,10 @@ public class AgendamentoController {
         sucessoAgendamento.setText(" ");
         dataIndisponivel.setText(" ");
 
+        AgendaDAO agendaDAO = new AgendaDAO();
         SendSMSDAO sendSMSDAO = new SendSMSDAO();
         AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
 
-
-        String selectedEspecialidade = boxEspecialidade.getValue();
         String selectedNameMedico = boxMedicos.getValue();
         LocalDate selectedDate = dataConsulta.getValue();
         LocalTime selectedHour = boxHour.getValue();
@@ -247,9 +261,16 @@ public class AgendamentoController {
         Medico selectedMedico = returnMedico(selectedNameMedico);
         LocalDateTime selectedHourDate = LocalDateTime.of(selectedDate, selectedHour);
 
+        int idadePaciente = 2024 - selectedPaciente.getDataNascimento().getYear();
+
+        System.out.println(idadePaciente);
+
         Agendamento agendamento = returnAgendamento(selectedHourDate, selectedMedico, selectedPaciente);
+        Agenda agenda = returnAgenda(selectedHourDate, selectedHour, selectedPaciente, selectedPaciente.getSexo(),
+                selectedPaciente.getDataNascimento(), idadePaciente, selectedMedico);
         try {
             agendamentoDAO.inserirAgendamento(agendamento);
+            agendaDAO.inserirAgenda(agenda);
 
             sucessoAgendamento.setText("CONSULTA AGENDADA");
 
@@ -266,22 +287,11 @@ public class AgendamentoController {
 
     }
 
-    @FXML
-    protected void onCancelarButtonClick(ActionEvent event){
-        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
-
-        var agendamento = tableAgendamento.getSelectionModel().getSelectedItem();
-
-
-    }
-
-
     protected void carregarDadosNaTabela() {
         tableAgendamento.getItems().clear();
         Paciente paciente = pacienteLogado;
         AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
         List<Agendamento> agendamentosGeral = agendamentoDAO.listarAgendamentos();
-        ArrayList<Agendamento> agendamentosPaciente;
         for(Agendamento agendamento : agendamentosGeral){
             if (agendamento.getPaciente().equals(paciente)){
                 tableAgendamento.getItems().add(agendamento);

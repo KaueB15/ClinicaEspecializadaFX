@@ -1,8 +1,10 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
 
 import br.edu.fescfafic.clicinaespecializadafx.dao.LoginDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import br.edu.fescfafic.clicinaespecializadafx.exceptions.LoginNotFoundException;
 import javafx.fxml.FXML;
@@ -52,6 +54,23 @@ public class LoginController {
         return pacienteLogado;
     }
 
+    protected Medico findMedicoByLogin(Login login){
+
+        Medico medicoLogado = null;
+
+        MedicoDAO medicoDAO = new MedicoDAO();
+
+        List<Medico> medicos = medicoDAO.listarMedico();
+
+        for(Medico medico : medicos){
+            if (medico.getLogin().getId() == login.getId()){
+                medicoLogado = medico;
+            }
+        }
+
+        return medicoLogado;
+    }
+
 
     @FXML
     protected void onLoginButtonClick() throws IOException {
@@ -79,6 +98,13 @@ public class LoginController {
                 if(userLogado.getTipo().equals("Medico")){
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agenda.fxml"));
                     Parent cadastroRoot = fxmlLoader.load();
+
+                    AgendaController agendaController = fxmlLoader.getController();
+                    Medico medicoLogado = findMedicoByLogin(userLogado);
+                    agendaController.setMedicoLogado(medicoLogado);
+                    agendaController.welcomeText.setText("Olá " + medicoLogado.getNome());
+                    agendaController.carregarDadosNaTabela();
+
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     Pane mainPane = (Pane) stage.getScene().getRoot();
                     mainPane.getChildren().clear();
@@ -95,7 +121,7 @@ public class LoginController {
                     agendamentoController.welcomeText.setText("Olá " + pacienteLogado.getNome());
                     agendamentoController.carregarDadosNaTabela();
 
-                    Stage stage = (Stage) cadastroButton.getScene().getWindow();
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
                     Pane mainPane = (Pane) stage.getScene().getRoot();
                     mainPane.getChildren().clear();
                     mainPane.getChildren().add(cadastroRoot);

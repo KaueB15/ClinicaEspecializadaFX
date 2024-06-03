@@ -46,14 +46,14 @@
                   <Image url="@images/logo_menor.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="dataConsulta" layoutX="29.0" layoutY="178.0" prefHeight="30.0" prefWidth="224.0" />
-            <Button id="btn-cancelar-consulta" layoutX="232.0" layoutY="353.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
-            <Button id="btnCadastro" fx:id="cadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <DatePicker fx:id="dateConsultaFind" layoutX="29.0" layoutY="178.0" prefHeight="30.0" prefWidth="224.0" />
+            <Button id="btn-cancelar-consulta" fx:id="buttonCancelarConsulta" layoutX="232.0" layoutY="353.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
+            <Button id="btnCadastro" fx:id="btnCadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />
                </tooltip>
             </Button>
-            <Button id="btnSair" fx:id="sair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
+            <Button id="btnSair" fx:id="btnSair" layoutX="537.0" layoutY="102.0" mnemonicParsing="false" onAction="#onSairButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Sair" />
                </tooltip>
@@ -72,12 +72,12 @@
               <content>
                 <VBox minHeight="0.0" minWidth="0.0" prefHeight="96.0" prefWidth="545.0">
                      <children>
-                        <TableView editable="true" prefHeight="110.0" prefWidth="547.0">
+                        <TableView fx:id="tableAgenda" editable="true" prefHeight="110.0" prefWidth="547.0">
                           <columns>
-                              <TableColumn prefWidth="283.0" text="Paciente" />
-                              <TableColumn prefWidth="82.0" text="Sexo" />
-                            <TableColumn prefWidth="73.0" text="Idade" />
-                            <TableColumn prefWidth="107.0" text="Hora" />
+                              <TableColumn fx:id="tablePaciente" prefWidth="283.0" text="Paciente" />
+                              <TableColumn fx:id="tableSexo" prefWidth="82.0" text="Sexo" />
+                            <TableColumn fx:id="tableIdade" prefWidth="73.0" text="Idade" />
+                            <TableColumn fx:id="tableHora" prefWidth="107.0" text="Hora" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
