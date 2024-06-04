@@ -135,7 +135,10 @@ public class AgendamentoController {
         EditarCadastroPacienteController editarCadastroPacienteController = fxmlLoader.getController();
         Paciente paciente = pacienteLogado;
         editarCadastroPacienteController.setPacienteLogado(paciente);
-        editarCadastroPacienteController.welcomeText.setText("Olá, " + paciente.getNome());
+        String nomeCompleto = pacienteLogado.getNome();
+        String[] nomeSeparado = nomeCompleto.split(" ");
+        String primeiroNome = nomeSeparado[0];
+        editarCadastroPacienteController.welcomeText.setText("Olá, " + primeiroNome + "!");
 
         Stage stage = (Stage) cadastro.getScene().getWindow();
         Pane mainPane = (Pane) stage.getScene().getRoot();

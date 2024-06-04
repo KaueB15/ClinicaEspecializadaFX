@@ -102,7 +102,10 @@ public class LoginController {
                     AgendaController agendaController = fxmlLoader.getController();
                     Medico medicoLogado = findMedicoByLogin(userLogado);
                     agendaController.setMedicoLogado(medicoLogado);
-                    agendaController.welcomeText.setText("Olá " + medicoLogado.getNome());
+                    String nomeCompleto = medicoLogado.getNome();
+                    String[] nomeSeparado = nomeCompleto.split(" ");
+                    String primeiroNome = nomeSeparado[0];
+                    agendaController.welcomeText.setText("Olá " + primeiroNome + "!");
                     agendaController.carregarDadosNaTabela();
 
                     Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -118,7 +121,10 @@ public class LoginController {
                     AgendamentoController agendamentoController = fxmlLoader.getController();
                     Paciente pacienteLogado = findPacienteByLogin(userLogado);
                     agendamentoController.setPacienteLogado(pacienteLogado);
-                    agendamentoController.welcomeText.setText("Olá, " + pacienteLogado.getNome());
+                    String nomeCompleto = pacienteLogado.getNome();
+                    String[] nomeSeparado = nomeCompleto.split(" ");
+                    String primeiroNome = nomeSeparado[0];
+                    agendamentoController.welcomeText.setText("Olá, " + primeiroNome + "!");
                     agendamentoController.carregarDadosNaTabela();
 
                     Stage stage = (Stage) loginButton.getScene().getWindow();

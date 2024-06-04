@@ -159,7 +159,10 @@ public class EditarCadastroPacienteController {
         Parent cadastroRoot = fxmlLoader.load();
 
         AgendamentoController agendamentoController = fxmlLoader.getController();
-        agendamentoController.welcomeText.setText("Olá, " + pacienteLogado.getNome());
+        String nomeCompleto = pacienteLogado.getNome();
+        String[] nomeSeparado = nomeCompleto.split(" ");
+        String primeiroNome = nomeSeparado[0];
+        agendamentoController.welcomeText.setText("Olá, " + primeiroNome + "!");
         agendamentoController.setPacienteLogado(pacienteLogado);
         agendamentoController.carregarDadosNaTabela();
 
