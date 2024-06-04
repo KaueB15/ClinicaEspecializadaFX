@@ -13,10 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import org.hibernate.exception.ConstraintViolationException;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class CadastroPacienteController {
     @FXML
@@ -41,6 +44,52 @@ public class CadastroPacienteController {
     private Label errorMessage;
     @FXML
     private Label cadastroMessage;
+
+    @FXML
+    public void initialize() {
+        // Configurar o DatePicker para aceitar entrada de texto no formato "dd/MM/yyyy"
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        fieldDate.setConverter(new StringConverter<LocalDate>() {
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return dateFormatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    try {
+                        return LocalDate.parse(string, dateFormatter);
+                    } catch (DateTimeParseException e) {
+                        errorMessage.setText("Formato de data inválido. Use dd/MM/yyyy.");
+                        return null;
+                    }
+                } else {
+                    return null;
+                }
+            }
+        });
+        // Adiciona um listener para tratar a entrada manual de data
+        fieldDate.getEditor().textProperty().addListener((obs, oldValue, newValue) -> {
+            // Verifique se o novo valor não está vazio
+            if (newValue != null && !newValue.isEmpty()) {
+                try {
+                    // Tente fazer o parse da data
+                    LocalDate parsedDate = LocalDate.parse(newValue, dateFormatter);
+                    // Se o parse der certo, define a nova data no DatePicker
+                    fieldDate.setValue(parsedDate);
+                } catch (DateTimeParseException e) {
+                    // Se o parse falhar, imprime uma mensagem de erro
+                    System.err.println("Erro ao fazer o parse da data: " + e.getMessage());
+                }
+            }
+        });
+    }
 
 
     @FXML
@@ -68,31 +117,21 @@ public class CadastroPacienteController {
 
     @FXML
     protected boolean fieldVerification(){
-
-        boolean returnVerification;
-
-        boolean nameVerification = fieldName.getText() == null;
-        boolean cpfVerification = fieldCPF.getText() == null;
-        boolean loginVerification = fieldLogin.getText() == null;
-        boolean passwordVerification = fieldPassword.getText() == null;
-        boolean phoneVerification = fieldPhone.getText() == null;
+        boolean nameVerification = fieldName.getText() == null || fieldName.getText().isEmpty();
+        boolean cpfVerification = fieldCPF.getText() == null || fieldCPF.getText().isEmpty();
+        boolean loginVerification = fieldLogin.getText() == null || fieldLogin.getText().isEmpty();
+        boolean passwordVerification = fieldPassword.getText() == null || fieldPassword.getText().isEmpty();
+        boolean phoneVerification = fieldPhone.getText() == null || fieldPhone.getText().isEmpty();
         boolean dateVerification = fieldDate.getValue() == null;
         boolean sexVerification = sexo.getSelectedToggle() == null;
 
-        if(nameVerification || cpfVerification || loginVerification || passwordVerification ||
-                phoneVerification || dateVerification || sexVerification){
-
-            returnVerification = false;
-        }else{
-            returnVerification = true;
-        }
-
-        return returnVerification;
+        return !(nameVerification || cpfVerification || loginVerification || passwordVerification ||
+                phoneVerification || dateVerification || sexVerification);
     }
 
     @FXML
     protected Paciente returnPaciente(String pacienteName, String pacienteCPF, Login pacienteLoginSenha,
-                                  String pacientePhone, String pacienteSexo, LocalDate pacienteDate){
+                                      String pacientePhone, String pacienteSexo, LocalDate pacienteDate){
         Paciente paciente = new Paciente();
 
         paciente.setNome(pacienteName);
@@ -107,7 +146,6 @@ public class CadastroPacienteController {
 
     @FXML
     protected void onCasdastrarPaciente(ActionEvent event) throws IOException {
-
         errorMessage.setText("");
         cadastroMessage.setText("");
 
@@ -126,41 +164,34 @@ public class CadastroPacienteController {
         int insertsDataBase = 0;
 
         try {
-            if (verification){
+            if (verification) {
+                System.out.println("Data informada: " + pacienteDate); // Log da data informada
                 Login pacienteLoginSenha = returnLogin(pacientePassword, pacienteLogin);
-
                 loginDAO.inserirLogin(pacienteLoginSenha);
-
                 insertsDataBase = 1;
 
-                Paciente paciente = returnPaciente(pacienteName, pacienteCPF, pacienteLoginSenha, pacientePhone, pacienteSexo,
-                        pacienteDate);
-
+                Paciente paciente = returnPaciente(pacienteName, pacienteCPF, pacienteLoginSenha, pacientePhone, pacienteSexo, pacienteDate);
                 pacienteDAO.cadastrarPaciente(paciente);
-
                 insertsDataBase = 10;
 
                 cadastroMessage.setText("Cadastrado com Sucesso!!!");
                 System.out.println("Cadastrado");
-            }else{
+            } else {
                 throw new FieldNullException();
             }
-
-        }catch (ConstraintViolationException e) {
+        } catch (ConstraintViolationException e) {
             errorMessage.setText("Dados já Cadastrados!!!");
             System.err.println("Algum valor está duplicado no banco de dados");
 
-            LoginDAO daoLogin = new LoginDAO();
-
-            if (insertsDataBase == 1){
-                daoLogin.deletarLogin(pacienteLogin);
+            if (insertsDataBase == 1) {
+                loginDAO.deletarLogin(pacienteLogin);
             }
-
-
-        }catch (FieldNullException e){
+        } catch (FieldNullException e) {
             errorMessage.setText("Campos Invalidos!!!");
             System.err.println(e);
+        } catch (Exception e) {
+            errorMessage.setText("Erro ao cadastrar o paciente.");
+            System.err.println(e);
         }
-
     }
 }
