@@ -26,6 +26,8 @@ public class Agenda {
     private Paciente paciente;
     @ManyToOne
     private Medico medico;
+    @ManyToOne
+    private Agendamento agendamento;
     private String sexo;
     private int idade;
 

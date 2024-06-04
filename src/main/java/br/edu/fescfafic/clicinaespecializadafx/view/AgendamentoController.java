@@ -92,9 +92,20 @@ public class AgendamentoController {
     @FXML
     private void onCancelarConsultaButtonClick() {
         AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
+        AgendaDAO agendaDAO = new AgendaDAO();
         Agendamento selectedAgendamento = tableAgendamento.getSelectionModel().getSelectedItem();
+        List<Agenda> agendas = agendaDAO.listarAgendas();
         if (selectedAgendamento != null) {
             // Remove a consulta selecionada
+            
+            for(Agenda agenda : agendas){
+                if (agenda.getAgendamento().getId() == selectedAgendamento.getId()){
+                    agenda.setAgendamento(null);
+                    agendaDAO.removerAgenda(agenda);
+                    break;
+                }
+            }
+
             tableAgendamento.getItems().remove(selectedAgendamento);
             agendamentoDAO.removerAgendamento(selectedAgendamento);
 
@@ -158,12 +169,11 @@ public class AgendamentoController {
             agendamento.setMedico(medico);
             agendamento.setPaciente(paciente);
 
-
             return agendamento;
     }
 
     protected Agenda returnAgenda(LocalDateTime dataConsulta, LocalTime horaConsulta, Paciente paciente, String sexo,
-                                  LocalDate dataNascimento, int idade, Medico medico){
+                                  LocalDate dataNascimento, int idade, Medico medico, Agendamento agendamento){
         Agenda agenda = new Agenda();
 
         agenda.setDataConsulta(dataConsulta);
@@ -173,8 +183,13 @@ public class AgendamentoController {
         agenda.setDataNascimento(dataNascimento);
         agenda.setIdade(idade);
         agenda.setMedico(medico);
+        agenda.setAgendamento(agendamento);
 
         return agenda;
+    }
+
+    protected void findAgenda(Agendamento agendamento){
+
     }
 
     protected Medico returnMedico(String nome) {
@@ -198,11 +213,9 @@ public class AgendamentoController {
 
         MedicoDAO medicoDAO = new MedicoDAO();
 
-        List<Medico> medicos = medicoDAO.listarMedico();
+        List<String> especialidades = medicoDAO.listarEspecialidades();
 
-        for (Medico medico : medicos){
-            String especialidade = medico.getEspecialidade();
-
+        for (String especialidade : especialidades){
             boxEspecialidade.getItems().add(especialidade);
         }
     }
@@ -270,7 +283,9 @@ public class AgendamentoController {
 
         Agendamento agendamento = returnAgendamento(selectedHourDate, selectedMedico, selectedPaciente);
         Agenda agenda = returnAgenda(selectedHourDate, selectedHour, selectedPaciente, selectedPaciente.getSexo(),
-                selectedPaciente.getDataNascimento(), idadePaciente, selectedMedico);
+                selectedPaciente.getDataNascimento(), idadePaciente, selectedMedico, agendamento);
+
+
         try {
             agendamentoDAO.inserirAgendamento(agendamento);
             agendaDAO.inserirAgenda(agenda);

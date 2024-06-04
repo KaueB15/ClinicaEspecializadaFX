@@ -25,7 +25,6 @@ public class Paciente {
     private Login login;
     @Column(unique = true)
     private String cpf;
-    @Column(unique = true)
     private String telefonePaciente;
 
 

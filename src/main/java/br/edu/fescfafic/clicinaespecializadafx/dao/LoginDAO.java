@@ -2,6 +2,7 @@ package br.edu.fescfafic.clicinaespecializadafx.dao;
 
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import br.edu.fescfafic.clicinaespecializadafx.persistence.EntityManagerConnection;
 
 import java.util.List;
@@ -46,7 +47,16 @@ public class LoginDAO {
                 getEmc().getEntityManager().close();
             }
         }
+    }
 
+    public void atualizarLogin(Login login) {
+        // Inicia a transação com o BD
+        getEmc().getEntityManager().getTransaction().begin();
+        // Realiza a percistencia na tabela
+        getEmc().getEntityManager().merge(login);
+        // Confirmação da transação
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
     }
 }
 

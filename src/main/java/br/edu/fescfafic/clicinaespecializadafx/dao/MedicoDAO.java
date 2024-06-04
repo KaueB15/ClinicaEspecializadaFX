@@ -75,5 +75,10 @@ public class MedicoDAO {
         getEmc().getEntityManager().close();
     }
 
+    public List<String> listarEspecialidades() {
+        getEmc().getEntityManager().getTransaction().begin();
+        var query = getEmc().getEntityManager().createNamedQuery("medicos.getAllEspecialidades");
+        return query.getResultList();
+    }
 
 }

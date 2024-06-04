@@ -28,4 +28,19 @@ public class AgendaDAO {
         TypedQuery<Agenda> query = getEmc().getEntityManager().createNamedQuery("listarTodasAgendas", Agenda.class);
         return query.getResultList();
     }
+
+    public void removerAgenda(Agenda agenda) {
+        var em = getEmc().getEntityManager();
+        getEmc().getEntityManager().getTransaction().begin();
+        Agenda remover = em.find(Agenda.class, agenda.getId());
+        if (remover != null) {
+            em.remove(remover);
+            System.out.println("Agenda removida com sucesso!");
+        } else {
+            System.out.println("Agenda não encontrado!");
+        }
+        getEmc().getEntityManager().getTransaction().commit();
+        getEmc().getEntityManager().close();
+
+    }
 }

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "medicos.getAll", query = "select m from Medico m"),
+        @NamedQuery(name = "medicos.getAllEspecialidades", query = "select distinct especialidade from Medico"),
         @NamedQuery(name = "medicos.getByCrm", query = "select m from Medico m where m.crm=:crm"),
         @NamedQuery(name = "medicos.getByEspecialidade", query = "select m from Medico m where m.especialidade=:especialidade")})
 public class Medico {

@@ -1,6 +1,8 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
 
+import br.edu.fescfafic.clicinaespecializadafx.dao.LoginDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class EditarCadastroPacienteController {
 
@@ -135,22 +138,32 @@ public class EditarCadastroPacienteController {
     private void onSalvarButtonClick() {
 
         PacienteDAO pacienteDAO = new PacienteDAO();
+        LoginDAO loginDAO = new LoginDAO();
+
+        Paciente pacienteAtualizado = pacienteLogado;
+
+        Login pacienteLogin = pacienteLogado.getLogin();
 
         String nameEdit = fieldName.getText();
-        System.out.println(nameEdit);
+        String senhaEdit = fieldPassword.getText();
+        LocalDate dateEdit = fieldDate.getValue();
 
-        pacienteLogado.setNome(nameEdit);
+//        if (nameEdit != null){
+//            pacienteAtualizado.setNome(nameEdit);
+//        }
+//
+//        if (senhaEdit != null){
+//            pacienteLogin.setSenha(senhaEdit);
+//        }
+//
+//        if (dateEdit != null){
+//            pacienteAtualizado.setDataNascimento(dateEdit);
+//        }
+//
+//        pacienteDAO.atualizarPaciente(pacienteAtualizado);
+//        loginDAO.atualizarLogin(pacienteLogin);
 
-        pacienteDAO.atualizarPaciente(pacienteLogado);
 
-    }
-
-    private Paciente newPaciente(String nome){
-        Paciente paciente = new Paciente();
-
-        paciente.setNome(nome);
-
-        return paciente;
     }
 
     @FXML

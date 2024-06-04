@@ -16,10 +16,6 @@ import java.time.format.DateTimeFormatter;
         @NamedQuery(name = "listarTodos", query = "select dh from Agendamento dh"),
         @NamedQuery(name = "buscarPorMedico", query = "select m from Medico m"),
         @NamedQuery(name = "buscarPorPaciente", query = "select p from Paciente p"),
-        @NamedQuery(name = "verificarDisponibilidade", query = "select hm from Agendamento hm where hm.dataHoraInicio=:dataHora"),
-        @NamedQuery(name = "valida.agendamento", query = "SELECT a FROM Agendamento a WHERE a.medico.id = :medico AND" +
-                " (:inicioAtendimento BETWEEN a.dataHoraInicio AND a.dataHoraFim) OR" +
-                " (:fimAtendimento BETWEEN a.dataHoraInicio AND a.dataHoraFim)")
 })
 public class Agendamento {
     @Id
@@ -28,9 +24,6 @@ public class Agendamento {
 
     @Column(unique = true)
     private LocalDateTime dataHoraInicio;
-
-    @Column(unique = true)
-    private LocalDateTime dataHoraFim;
 
     @ManyToOne
     private Medico medico;
