@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class AgendaController {
@@ -43,6 +44,10 @@ public class AgendaController {
     private TableColumn<Agenda, Integer> tableIdade;
     @FXML
     private TableColumn<Agenda, LocalTime> tableHora;
+    @FXML
+    private TableColumn<Agenda, String> tableDataConsulta;
+
+
 
 
     protected Medico medicoLogado;
@@ -54,6 +59,7 @@ public class AgendaController {
         tableIdade.setCellValueFactory(new PropertyValueFactory<>("idadePaciente"));
         tableSexo.setCellValueFactory(new PropertyValueFactory<>("sexoPaciente"));
         tableHora.setCellValueFactory(new PropertyValueFactory<>("horaPaciente"));
+        tableDataConsulta.setCellValueFactory(new PropertyValueFactory<>("dataConsulta"));
 
         carregarDadosNaTabela();
     }
