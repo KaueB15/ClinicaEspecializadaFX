@@ -21,6 +21,11 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@styles.css">
          <children>
+            <ImageView fitHeight="30.0" fitWidth="39.0" layoutX="262.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/filtro.png" />
+               </image>
+            </ImageView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#109475" height="45.0" layoutY="98.0" stroke="#755f5f00" strokeType="INSIDE" width="600.0" />
             <ImageView id="btn-cadastro" disable="true" fitHeight="40.0" fitWidth="39.0" layoutX="486.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" styleClass="icon-button">
                <image>
@@ -47,7 +52,7 @@
                </image>
             </ImageView>
             <DatePicker fx:id="dateFilter" layoutX="29.0" layoutY="178.0" prefHeight="30.0" prefWidth="224.0" />
-            <Button id="btn-cancelar-consulta" fx:id="buttonCancelarConsulta" layoutX="273.0" layoutY="181.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="25.0" prefWidth="55.0" styleClass="btn-agendar" stylesheets="@styles.css" text="Filtrar" />
+            <Button id="btn-cancelar-consulta" fx:id="buttonCancelarConsulta" layoutX="262.0" layoutY="178.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="30.0" prefWidth="30.0" styleClass="icon-button" stylesheets="@styles.css" />
             <Button id="btnCadastro" fx:id="btnCadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />
