@@ -8,7 +8,9 @@ Bem-vindo ao Sistema de Agendamento de Consultas! Este sistema foi desenvolvido 
 Este projeto foi desenvolvido como parte das atividades da disciplina de Engenharia de Software do curso de Ciências da Computação da Faculdade Católica da Paraíba.
 
 ## Visão Geral
-![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/98f2ca7c-c4e1-482e-ba8b-f1656c4e59a9) ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/f15f8dde-0631-4d2c-a6bf-23cfebc3b22e) ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/3804a027-c20a-4f0a-96e0-b0047c31ba9a)
+![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/98f2ca7c-c4e1-482e-ba8b-f1656c4e59a9) ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/6405d17e-d3af-4ce0-abcc-97bb0a6f1867) ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/cf283d6a-71a5-4d4a-9206-b79976c86b67)
+
+ ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/f15f8dde-0631-4d2c-a6bf-23cfebc3b22e) ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/3804a027-c20a-4f0a-96e0-b0047c31ba9a)
 
 
 
