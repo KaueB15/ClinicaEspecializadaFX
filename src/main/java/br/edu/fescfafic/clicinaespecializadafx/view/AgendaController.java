@@ -103,6 +103,7 @@ public class AgendaController {
         String[] nomeSeparado = nomeCompleto.split(" ");
         String primeiroNome = nomeSeparado[0];
         editarCadastroMedicoController.welcomeText.setText("Olá, " + primeiroNome + "!");
+        editarCadastroMedicoController.returnDados();
 
         Stage stage = (Stage) btnCadastro.getScene().getWindow();
         Pane mainPane = (Pane) stage.getScene().getRoot();

@@ -139,6 +139,20 @@ public class EditarCadastroMedicoController {
     }
 
     @FXML
+    protected void returnDados(){
+        Medico medicoLogin = medicoLogado;
+
+        String crmMedico = String.valueOf(medicoLogin.getCrm());
+
+        labelCPF.setText(medicoLogin.getCpf());
+        labelCrm.setText(crmMedico);
+        labelEspecialidade.setText(medicoLogin.getEspecialidade());
+        labelLogin.setText(medicoLogin.getLogin().getLogin());
+        labelPassword.setText("**********");
+        labelName.setText(medicoLogin.getNome());
+    }
+
+    @FXML
     private void onSalvarButtonClick() {
         cadastroMessage.setText("");
         errorMessage.setText("");
@@ -188,6 +202,8 @@ public class EditarCadastroMedicoController {
         try{
             medicoDAO.atualizarMedico(medicoAtualizado);
             loginDAO.atualizarLogin(medicoLogin);
+
+            returnDados();
 
             cadastroMessage.setText("ATUALIZADO");
         }catch (RollbackException e){
