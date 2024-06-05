@@ -16,6 +16,7 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class EditarCadastroPacienteController {
 
@@ -184,7 +185,7 @@ public class EditarCadastroPacienteController {
         try{
             pacienteDAO.atualizarPaciente(pacienteAtualizado);
             loginDAO.atualizarLogin(pacienteLogin);
-
+            returnDados();
             cadastroMessage.setText("ATUALIZADO");
         }catch (RollbackException e){
             System.out.println("Dados já existem no banco de dados");
@@ -192,6 +193,18 @@ public class EditarCadastroPacienteController {
         }
 
 
+
+    }
+
+    protected void returnDados(){
+        Paciente pacienteLogin = pacienteLogado;
+
+        labelName.setText(pacienteLogin.getNome());
+        labelCPF.setText(pacienteLogin.getCpf());
+        labelDate.setText(pacienteLogin.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        labelLogin.setText(pacienteLogin.getLogin().getLogin());
+        labelPassword.setText("**********");
+        labelPhone.setText(pacienteLogin.getTelefonePaciente());
 
     }
 
