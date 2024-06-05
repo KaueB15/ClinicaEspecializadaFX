@@ -8,6 +8,12 @@ Bem-vindo ao Sistema de Agendamento de Consultas! Este sistema foi desenvolvido 
 Este projeto foi desenvolvido como parte das atividades da disciplina de Engenharia de Software do curso de Ciências da Computação da Faculdade Católica da Paraíba.
 
 ## Visão Geral
+![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/98f2ca7c-c4e1-482e-ba8b-f1656c4e59a9) ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/f15f8dde-0631-4d2c-a6bf-23cfebc3b22e) ![image](https://github.com/KaueB15/ClinicaEspecializadaFX/assets/134158119/3804a027-c20a-4f0a-96e0-b0047c31ba9a)
+
+
+
+
+
 
 O Sistema de Agendamento de Consultas permite que os usuários realizem as seguintes operações:
 
@@ -39,7 +45,7 @@ Para configurar e executar o projeto em sua máquina local, siga estas etapas:
 1. Clone este repositório para o seu ambiente local:
 
 ```
-git clone https://github.com/seu-usuario/sistema-agendamento-consultas.git
+git clone https://github.com/KaueB15/ClinicaEspecializadaFX.git
 ```
 
 2. Importe o projeto em sua IDE Java preferida.
