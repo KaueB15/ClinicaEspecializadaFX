@@ -52,7 +52,10 @@
                </image>
             </ImageView>
             <DatePicker fx:id="dateFilter" layoutX="29.0" layoutY="178.0" prefHeight="30.0" prefWidth="224.0" />
-            <Button id="btn-cancelar-consulta" fx:id="buttonCancelarConsulta" layoutX="262.0" layoutY="178.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="30.0" prefWidth="30.0" styleClass="icon-button" stylesheets="@styles.css" />
+            <Button id="btn-cancelar-consulta" fx:id="buttonCancelarConsulta" layoutX="262.0" layoutY="178.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="30.0" prefWidth="30.0" styleClass="icon-button" stylesheets="@styles.css">
+               <tooltip>
+                  <Tooltip text="Filtrar" />
+               </tooltip></Button>
             <Button id="btnCadastro" fx:id="btnCadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />
