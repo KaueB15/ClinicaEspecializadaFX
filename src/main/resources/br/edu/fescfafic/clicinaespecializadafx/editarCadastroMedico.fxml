@@ -61,8 +61,14 @@
                <font>
                   <Font name="Leelawadee UI Bold" size="13.0" />
                </font></Button>
-            <Label fx:id="errorMessage" layoutX="20.0" layoutY="367.0" prefHeight="25.0" prefWidth="182.0" textFill="RED" />
-            <Label fx:id="cadastroMessage" layoutX="20.0" layoutY="365.0" prefHeight="25.0" prefWidth="203.0" textFill="#0fff00" />
+            <Label fx:id="errorMessage" layoutX="48.0" layoutY="344.0" prefHeight="25.0" prefWidth="218.0" textFill="RED">
+               <font>
+                  <Font name="Leelawadee UI" size="14.0" />
+               </font></Label>
+            <Label fx:id="cadastroMessage" layoutX="30.0" layoutY="344.0" prefHeight="25.0" prefWidth="218.0" textFill="#0fff00">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font></Label>
             <Label fx:id="welcomeText" layoutX="26.0" layoutY="26.0" prefHeight="66.0" prefWidth="312.0" text="Olá, [Fulano]!" textFill="WHITE">
                <font>
                   <Font name="Leelawadee UI Bold" size="26.0" />

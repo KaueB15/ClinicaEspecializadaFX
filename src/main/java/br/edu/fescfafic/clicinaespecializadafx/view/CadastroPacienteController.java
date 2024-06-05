@@ -176,6 +176,15 @@ public class CadastroPacienteController {
 
                 cadastroMessage.setText("Cadastrado com Sucesso!!!");
                 System.out.println("Cadastrado");
+
+                Thread.sleep(2000);
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/login.fxml"));
+                Parent loginRoot = fxmlLoader.load();
+                Stage stage = (Stage) btnFinalizarCadastro.getScene().getWindow();
+                Pane mainPane = (Pane) stage.getScene().getRoot();
+                mainPane.getChildren().clear();
+                mainPane.getChildren().add(loginRoot);
             } else {
                 throw new FieldNullException();
             }

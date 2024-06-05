@@ -4,6 +4,7 @@ import br.edu.fescfafic.clicinaespecializadafx.dao.LoginDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
+import jakarta.persistence.RollbackException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -137,6 +139,9 @@ public class EditarCadastroPacienteController {
     @FXML
     private void onSalvarButtonClick() {
 
+        cadastroMessage.setText("");
+        errorMessage.setText("");
+
         PacienteDAO pacienteDAO = new PacienteDAO();
         LoginDAO loginDAO = new LoginDAO();
 
@@ -145,23 +150,47 @@ public class EditarCadastroPacienteController {
         Login pacienteLogin = pacienteLogado.getLogin();
 
         String nameEdit = fieldName.getText();
+        String cpfEdit = fieldCPF.getText();
+        String loginEdit = fieldLogin.getText();
+        String telefoneEdit = fieldPhone.getText();
         String senhaEdit = fieldPassword.getText();
         LocalDate dateEdit = fieldDate.getValue();
 
-//        if (nameEdit != null){
-//            pacienteAtualizado.setNome(nameEdit);
-//        }
-//
-//        if (senhaEdit != null){
-//            pacienteLogin.setSenha(senhaEdit);
-//        }
-//
-//        if (dateEdit != null){
-//            pacienteAtualizado.setDataNascimento(dateEdit);
-//        }
-//
-//        pacienteDAO.atualizarPaciente(pacienteAtualizado);
-//        loginDAO.atualizarLogin(pacienteLogin);
+
+        if (!nameEdit.isEmpty()){
+            pacienteAtualizado.setNome(nameEdit);
+        }
+
+        if (!senhaEdit.isEmpty()){
+            pacienteLogin.setSenha(senhaEdit);
+        }
+
+        if (!loginEdit.isEmpty()){
+            pacienteLogin.setLogin(loginEdit);
+        }
+
+        if (!cpfEdit.isEmpty()){
+            pacienteAtualizado.setCpf(cpfEdit);
+        }
+
+        if (!telefoneEdit.isEmpty()){
+            pacienteAtualizado.setTelefonePaciente(telefoneEdit);
+        }
+
+        if (dateEdit != null){
+            pacienteAtualizado.setDataNascimento(dateEdit);
+        }
+
+        try{
+            pacienteDAO.atualizarPaciente(pacienteAtualizado);
+            loginDAO.atualizarLogin(pacienteLogin);
+
+            cadastroMessage.setText("ATUALIZADO");
+        }catch (RollbackException e){
+            System.out.println("Dados já existem no banco de dados");
+            errorMessage.setText("DADOS EXISTENTES");
+        }
+
 
 
     }

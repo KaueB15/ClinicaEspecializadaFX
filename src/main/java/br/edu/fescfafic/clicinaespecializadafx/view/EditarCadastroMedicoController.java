@@ -1,5 +1,11 @@
 package br.edu.fescfafic.clicinaespecializadafx.view;
+import br.edu.fescfafic.clicinaespecializadafx.dao.LoginDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
+import br.edu.fescfafic.clicinaespecializadafx.dao.PacienteDAO;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
+import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
+import jakarta.persistence.RollbackException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class EditarCadastroMedicoController {
 
@@ -76,6 +83,15 @@ public class EditarCadastroMedicoController {
     private Button editCrmButton;
 
     @FXML
+    private Label errorMessage;
+
+    @FXML
+    private Label cadastroMessage;
+
+
+    protected Medico medicoLogado;
+
+    @FXML
     void onEditName() {
         toggleEdit(fieldName, labelName, editNameButton);
     }
@@ -105,6 +121,10 @@ public class EditarCadastroMedicoController {
         toggleEdit(fieldCrm, labelCrm, editCrmButton);
     }
 
+    protected void setMedico(Medico medico){
+        this.medicoLogado = medico;
+    }
+
     private void toggleEdit(Control control, Label label, Button editButton) {
         if (control.isVisible()) {
             label.setVisible(true);
@@ -120,15 +140,75 @@ public class EditarCadastroMedicoController {
 
     @FXML
     private void onSalvarButtonClick() {
-        System.out.println("Salvar Alterações no Banco de Dados");
-//        Lógica para salvar as alterações
+        cadastroMessage.setText("");
+        errorMessage.setText("");
 
+        MedicoDAO medicoDAO = new MedicoDAO();
+        LoginDAO loginDAO = new LoginDAO();
+
+        Medico medicoAtualizado = medicoLogado;
+
+        Login medicoLogin = medicoLogado.getLogin();
+
+        String nameEdit = fieldName.getText();
+        String cpfEdit = fieldCPF.getText();
+        String loginEdit = fieldLogin.getText();
+        String senhaEdit = fieldPassword.getText();
+        String especialidadeEdit = fieldEspecialidade.getText();
+        String crmEdit = fieldCrm.getText();
+
+
+
+        if (!nameEdit.isEmpty()){
+            medicoAtualizado.setNome(nameEdit);
+        }
+
+        if (!senhaEdit.isEmpty()){
+            medicoLogin.setSenha(senhaEdit);
+        }
+
+        if (!loginEdit.isEmpty()){
+            medicoLogin.setLogin(loginEdit);
+        }
+
+        if (!cpfEdit.isEmpty()){
+            medicoAtualizado.setCpf(cpfEdit);
+        }
+
+        if (!crmEdit.isEmpty()){
+            int crmEditado = Integer.parseInt(crmEdit);
+            medicoAtualizado.setCrm(crmEditado);
+        }
+
+        if (!especialidadeEdit.isEmpty()){
+            medicoAtualizado.setEspecialidade(especialidadeEdit);
+        }
+
+
+        try{
+            medicoDAO.atualizarMedico(medicoAtualizado);
+            loginDAO.atualizarLogin(medicoLogin);
+
+            cadastroMessage.setText("ATUALIZADO");
+        }catch (RollbackException e){
+            System.out.println("Dados já existem no banco de dados");
+            errorMessage.setText("DADOS EXISTENTES");
+        }
     }
 
     @FXML
     private void onVoltarButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/agenda.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
+
+        AgendaController agendaController = fxmlLoader.getController();
+        String nomeCompleto = medicoLogado.getNome();
+        String[] nomeSeparado = nomeCompleto.split(" ");
+        String primeiroNome = nomeSeparado[0];
+        agendaController.welcomeText.setText("Olá, " + primeiroNome + "!");
+        agendaController.setMedicoLogado(medicoLogado);
+        agendaController.carregarDadosNaTabela();
+
         Stage stage = (Stage) btnVoltar.getScene().getWindow();
         Pane mainPane = (Pane) stage.getScene().getRoot();
         mainPane.getChildren().clear();

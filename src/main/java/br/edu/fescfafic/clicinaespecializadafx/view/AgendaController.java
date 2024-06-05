@@ -86,6 +86,15 @@ public class AgendaController {
     private void onCadastroButtonClick() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/br/edu/fescfafic/clicinaespecializadafx/editarCadastroMedico.fxml"));
         Parent cadastroRoot = fxmlLoader.load();
+
+        EditarCadastroMedicoController editarCadastroMedicoController = fxmlLoader.getController();
+        Medico medico = medicoLogado;
+        editarCadastroMedicoController.setMedico(medico);
+        String nomeCompleto = medico.getNome();
+        String[] nomeSeparado = nomeCompleto.split(" ");
+        String primeiroNome = nomeSeparado[0];
+        editarCadastroMedicoController.welcomeText.setText("Olá, " + primeiroNome + "!");
+
         Stage stage = (Stage) btnCadastro.getScene().getWindow();
         Pane mainPane = (Pane) stage.getScene().getRoot();
         mainPane.getChildren().clear();
