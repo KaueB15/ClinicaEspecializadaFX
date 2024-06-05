@@ -5,6 +5,7 @@ import br.edu.fescfafic.clicinaespecializadafx.dao.AgendamentoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.MedicoDAO;
 import br.edu.fescfafic.clicinaespecializadafx.dao.SendSMSDAO;
 import br.edu.fescfafic.clicinaespecializadafx.domain.*;
+import br.edu.fescfafic.clicinaespecializadafx.exceptions.InvalidDateException;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 public class AgendamentoController {
@@ -87,6 +89,16 @@ public class AgendamentoController {
 
         // Adiciona um listener para o botão "Cancelar Consulta"
         cancelButton.setOnAction(event -> onCancelarConsultaButtonClick());
+    }
+
+    public boolean dateValidation(LocalDateTime date){
+        LocalDateTime now = LocalDateTime.now();
+        if(date.isBefore(now)){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     @FXML
@@ -287,20 +299,28 @@ public class AgendamentoController {
 
 
         try {
-            agendamentoDAO.inserirAgendamento(agendamento);
-            agendaDAO.inserirAgenda(agenda);
+            if (dateValidation(selectedHourDate)){
+                agendamentoDAO.inserirAgendamento(agendamento);
+                agendaDAO.inserirAgenda(agenda);
 
-            sucessoAgendamento.setText("CONSULTA AGENDADA");
+                sucessoAgendamento.setText("CONSULTA AGENDADA");
 
-            carregarDadosNaTabela();
+                carregarDadosNaTabela();
 
-            String mensagemFormatada = "Consulta Agendada\n" + "Paciente - " + pacienteLogado.getNome() + "\nMedico - "
-                    + selectedMedico.getNome() + "\nData - " + selectedDate + "\nHora - " + selectedHour;
+                String mensagemFormatada = "Consulta Agendada\n" + "Paciente - " + pacienteLogado.getNome() + "\nMedico - "
+                        + selectedMedico.getNome() + "\nData - " + selectedDate + "\nHora - " + selectedHour;
 
-            sendSMSDAO.sendSMS(mensagemFormatada);
+                sendSMSDAO.sendSMS(mensagemFormatada);
+
+            }else{
+                throw new InvalidDateException();
+            }
         }catch (ConstraintViolationException e){
             System.out.println("DATA INDISPONIVEL");
             dataIndisponivel.setText("DATA INDISPONIVEL");
+        }catch (InvalidDateException e){
+            System.out.println(e);
+            dataIndisponivel.setText("DATA INVALIDA");
         }
 
     }
