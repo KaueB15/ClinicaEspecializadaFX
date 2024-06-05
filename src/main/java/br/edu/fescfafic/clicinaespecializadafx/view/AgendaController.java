@@ -16,13 +16,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 public class AgendaController {
 
     @FXML
-    private DatePicker datePicker;
+    private DatePicker dateFilter;
     @FXML
     private TableView<Agenda> tableAgenda;
     @FXML
@@ -31,6 +32,8 @@ public class AgendaController {
     private Button btnSair;
     @FXML
     private Button btnCadastro;
+    @FXML
+    private Button buttonCancelarConsulta;
 
     @FXML
     private TableColumn<Agenda, String> tablePaciente;
@@ -99,6 +102,24 @@ public class AgendaController {
         Pane mainPane = (Pane) stage.getScene().getRoot();
         mainPane.getChildren().clear();
         mainPane.getChildren().add(cadastroRoot);
+    }
+
+    @FXML
+    private void onFilterButtonClick(ActionEvent event){
+
+        tableAgenda.getItems().clear();
+
+        AgendaDAO agendaDAO = new AgendaDAO();
+
+        LocalDate dateFilterPicker = dateFilter.getValue();
+
+        List<Agenda> agendaList = agendaDAO.listarAgendas();
+
+        for (Agenda agenda : agendaList){
+            if (agenda.getMedico().equals(medicoLogado) && agenda.getDataConsulta().toLocalDate().equals(dateFilterPicker)){
+                tableAgenda.getItems().add(agenda);
+            }
+        }
     }
 
     @FXML
