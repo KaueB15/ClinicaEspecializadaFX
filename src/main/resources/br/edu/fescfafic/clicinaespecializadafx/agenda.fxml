@@ -47,7 +47,7 @@
                </image>
             </ImageView>
             <DatePicker fx:id="dateFilter" layoutX="29.0" layoutY="178.0" prefHeight="30.0" prefWidth="224.0" />
-            <Button id="btn-cancelar-consulta" fx:id="buttonCancelarConsulta" layoutX="232.0" layoutY="353.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="25.0" prefWidth="137.0" styleClass="btn-cancelar-consulta" stylesheets="@styles.css" text="Cancelar Consulta" />
+            <Button id="btn-cancelar-consulta" fx:id="buttonCancelarConsulta" layoutX="273.0" layoutY="181.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="25.0" prefWidth="55.0" styleClass="btn-agendar" stylesheets="@styles.css" text="Filtrar" />
             <Button id="btnCadastro" fx:id="btnCadastro" layoutX="486.0" layoutY="102.0" mnemonicParsing="false" onAction="#onCadastroButtonClick" prefHeight="40.0" prefWidth="39.0" styleClass="icon-button">
                <tooltip>
                   <Tooltip text="Meu Cadastro" />

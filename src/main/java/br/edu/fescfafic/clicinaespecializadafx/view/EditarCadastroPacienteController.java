@@ -57,6 +57,9 @@ public class EditarCadastroPacienteController {
     private Label labelPhone;
 
     @FXML
+    private ToggleGroup sexoRadio;
+
+    @FXML
     private Button btnSalvar;
 
     @FXML
@@ -156,6 +159,7 @@ public class EditarCadastroPacienteController {
         String telefoneEdit = fieldPhone.getText();
         String senhaEdit = fieldPassword.getText();
         LocalDate dateEdit = fieldDate.getValue();
+        String sexoEdit = ((RadioButton) sexoRadio.getSelectedToggle()).getText();
 
 
         if (!nameEdit.isEmpty()){
@@ -180,6 +184,10 @@ public class EditarCadastroPacienteController {
 
         if (dateEdit != null){
             pacienteAtualizado.setDataNascimento(dateEdit);
+        }
+
+        if (!sexoEdit.isEmpty()){
+            pacienteAtualizado.setSexo(sexoEdit);
         }
 
         try{

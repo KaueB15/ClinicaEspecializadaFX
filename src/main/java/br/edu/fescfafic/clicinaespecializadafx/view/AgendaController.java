@@ -59,7 +59,7 @@ public class AgendaController {
         tableIdade.setCellValueFactory(new PropertyValueFactory<>("idadePaciente"));
         tableSexo.setCellValueFactory(new PropertyValueFactory<>("sexoPaciente"));
         tableHora.setCellValueFactory(new PropertyValueFactory<>("horaPaciente"));
-        tableDataConsulta.setCellValueFactory(new PropertyValueFactory<>("dataConsulta"));
+        tableDataConsulta.setCellValueFactory(new PropertyValueFactory<>("dataConsultaFormatted"));
 
         carregarDadosNaTabela();
     }
@@ -138,5 +138,7 @@ public class AgendaController {
         mainPane.getChildren().clear();
         mainPane.getChildren().add(cadastroRoot);
     }
+
+
 
 }

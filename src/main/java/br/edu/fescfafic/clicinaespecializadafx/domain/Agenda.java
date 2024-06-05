@@ -67,4 +67,9 @@ public class Agenda {
         }
     }
 
+    public String getDataConsultaFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return dataConsulta != null ? dataConsulta.toLocalDate().format(formatter) : "";
+    }
+
 }
