@@ -58,6 +58,14 @@ git clone https://github.com/KaueB15/ClinicaEspecializadaFX.git
 
 5. Execute o projeto a partir da classe principal (`Main.java`) para iniciar a aplicação.
 
+## 💻 Desenvolvedores
+
+- <a href="https://github.com/KaueB15">Kauê Batista</a>
+- <a href="https://github.com/evertonc15">Everton Candido</a>
+- <a href="https://github.com/lukaspersy">Lucas Pereira</a>
+- <a href="https://github.com/KokinFR">Francisco Rafael</a>
+- <a href="https://github.com/JIJunior22">José Ironildo</a>
+
 ## Contribuição
 
 Contribuições são bem-vindas! Se você identificar bugs, problemas de desempenho ou tiver sugestões de novos recursos, sinta-se à vontade para abrir uma issue neste repositório.
