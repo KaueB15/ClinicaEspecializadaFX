@@ -4,6 +4,7 @@ import br.edu.fescfafic.clicinaespecializadafx.dao.*;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Login;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Medico;
 import br.edu.fescfafic.clicinaespecializadafx.domain.Paciente;
+import br.edu.fescfafic.clicinaespecializadafx.view.AgendamentoController;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class App2 {
 //
 ////        loginDao.inserirLogin(loginKokin);
 //
-        loginDao.deletarLogin("açai123");
+//        loginDao.deletarLogin("açai123");
 
 //        var pacienteKokin = new Paciente();
 //        pacienteKokin.setNome("Kokin");
@@ -67,8 +68,21 @@ public class App2 {
 //        System.out.println("Tabelas Geradas com Sucesso!!!!!");
 
 //        SendSMSDAO sendSMSDAO = new SendSMSDAO();
-//        sendSMSDAO.sendSMS("+5511987069733");
+//////        sendSMSDAO.sendSMS("+5511987069733");
+//////
+//////        var agendamentoDao = new AgendamentoDAO();
+//////
+//////        agendamentoDao.getEmc().getEntityManager().clear();
+
+//        var agendaDAO = new AgendaDAO();
+//        agendaDAO.getEmc().getEntityManager().clear();
+
+//        agendamentoDao.getEmc().getEntityManager();
+
+//        System.out.println(medicoDao.listarEspecialidades());
+
+//        System.out.println(agendaDAO.listarAgendas());
+//        System.out.println(agendaDAO.listarAgendas());
+
     }
 }
-
-
